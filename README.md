@@ -7,6 +7,7 @@ Members
 - [Edsel Pingol] (https://www.facebook.com/Zengkisel)
 - [Glenwyn Lomocso] (https://www.facebook.com/YeahYouAlready)
 
-Updates *mm/dd/yyyy : description*
+Updates 
 ================
-- [02/24/2013] created this repositori
+*mm/dd/yyyy : description*
+- [02/24/2013] created this repository
