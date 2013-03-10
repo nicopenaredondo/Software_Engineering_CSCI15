@@ -11,3 +11,5 @@ Updates
 ================
 *mm/dd/yyyy : description*
 - [02/24/2013] created this repository
+- [03/10/2013] added Tank_Auth library for user authentication
+	- added also Foundation for rapid prototyping

@@ -37,13 +37,14 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-//main page routes
-$route['default_controller'] = "website/main/home";
-$route['about-us'] = 'website/main/about_us';
 
-//administrator routes
+//main page routes
+$route['default_controller'] = "front_store/home_front_store/home";
+
 
 //customer routes
+$route['auth'] = 'auth';
+//etc
 $route['404_override'] = '';
 
 
