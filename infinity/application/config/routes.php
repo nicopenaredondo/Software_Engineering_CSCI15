@@ -39,7 +39,7 @@
 */
 
 //main page routes
-$route['default_controller'] = "front_store/home_front_store/home";
+$route['default_controller'] = "front_store/controller_front_store/home";
 
 
 //customer routes
