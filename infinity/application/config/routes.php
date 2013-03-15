@@ -49,7 +49,8 @@ $route['auth'] = 'auth';
 $route['404_override'] = '';
 
 //administrator
-$route['admin'] = 'back_store/controller_back_store_main/main';
+$route['admin'] = 'back_store/controller_back_store_main/index';
+$route['admin/dashboard'] = 'back_store/controller_back_store_main/dashboard';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
