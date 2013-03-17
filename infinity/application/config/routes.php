@@ -39,18 +39,22 @@
 */
 
 //main page routes
-$route['default_controller'] = "front_store/controller_front_store_main/main";
+$route['default_controller'] = "front_store/controller_front_store/index";
 
 
-//customer routes
-$route['auth'] = 'auth';
+//login routes
+$route['auth'] 		 	 = 'front_store/controller_front_store_login/index';
+$route['auth/login']     = 'front_store/controller_front_store_login/login';
 
+//registration routes
+$route['auth/register'] = 'front_store/controller_front_store_registration/index'; 
+$route['auth/register/new'] = 'front_store/controller_front_store_registration/register'; 
 //etc
 $route['404_override'] = '';
 
 //administrator
 $route['admin'] = 'back_store/controller_back_store_main/index';
-$route['admin/dashboard'] = 'back_store/controller_back_store_main/dashboard';
+//$route['admin/dashboard'] = 'back_store/controller_back_store_main/dashboard';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

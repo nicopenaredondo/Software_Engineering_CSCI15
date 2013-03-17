@@ -21,7 +21,7 @@ class Controller_back_store_main extends CI_Controller
 	public function index()
 	{
 		$this->header();
-		$this->load->view('template/footer');
+		$this->load->view('view_back_store/dashboard');
 		$this->footer();
 		/*
 		if($this->is_logged_in == TRUE)

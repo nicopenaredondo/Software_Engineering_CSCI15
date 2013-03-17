@@ -7,8 +7,8 @@ class Controller_front_store extends CI_Controller
 		parent::__construct();
 	}
 
-	public function home()
+	public function index()
 	{
-		$this->load->view('view_front_store/main');
+		$this->load->view('view_front_store/index');
 	}
 }

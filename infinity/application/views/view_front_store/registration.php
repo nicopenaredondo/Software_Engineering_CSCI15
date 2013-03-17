@@ -43,9 +43,7 @@
 	    margin: 0 0 20px;
 	        box-sizing: border-box;
 	    }
-	  .signin-box input[type=submit] {
-	    margin: 0 20px 15px 0;
-	    }
+	 
 
 	  .signin-box label {
 	    color: #222;
@@ -81,20 +79,23 @@
 	<div class="container">
     <div class="signin">
       <div class="signin-box">
-        <h2 class="form-signin-heading">Sign in</h2>
-        	<?php echo form_open($this->uri->uri_string()); ?>
+        <h2 class="form-signin-heading">Customer Registration</h2>
+        	<form action="<?php echo base_url('auth/register/new');?>" method = "POST">
             <fieldset>
-            <div class="alert alert-error"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></div>
-              <label for="username"><?php echo form_label($login_label, $login['id']); ?></label>
-              	<?php echo form_input($login); ?>
+           <?php echo $this->session->flashdata('message');?>
+           <?php echo form_error('username');?>
+              <label for="username">Username</label>
+              	<input type="text" name="username" placeholder="username" value="<?php //echo set_value('username');?>">
 
-		<div class="alert alert-error"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></div>
-              <label for="passwd"><?php echo form_label('Password', $password['id']); ?></label>
-              	<?php echo form_password($password); ?>
+		<?php echo form_error('email_address');?>
+              <label for="email_address">Email Address</label>
+              	<input type="text" name="email_address" placeholder="Email Address" value="">
 
-              <!--<input type="submit" class="btn btn-primary" value="Sign in">-->
-              <?php $attributes = array('class' => 'btn btn-primary');
-              <?php echo form_submit('submit', 'Let me in',$attributes); ?>
+            <?php echo form_error('password');?>
+              <label for="password">Password</label>
+              	<input type="password" name="password" placeholder="password" value="" required>
+
+	        <input type="submit" class="btn btn-primary" value="Sign up">
              </fieldset>
           </form>
 		</div><!--signin-box-->
