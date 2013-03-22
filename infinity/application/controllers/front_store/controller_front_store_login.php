@@ -12,20 +12,20 @@ class Controller_front_store_login extends CI_Controller
 	{
 		$view_data['message'] = $message;
 		$this->header();
-		$this->load->view('view_front_store/login',$view_data);
+		$this->load->view('front_store/login',$view_data);
 		$this->footer();
 	}
 
 	private function header($attr = NULL)
 	{
 	$header_data['attr'] = $attr;
-	$this->load->view('template/header',$header_data);
+	$this->load->view('template/front_store/header',$header_data);
 	}
 
 	private function footer($attr = NULL)
 	{
 	$footer_data['attr'] = $attr;
-	$this->load->view('template/footer',$footer_data);
+	$this->load->view('template/front_store/footer',$footer_data);
 	}
 
 	public function login()
@@ -63,9 +63,5 @@ class Controller_front_store_login extends CI_Controller
 		}
 	}
 
-	public function logout()
-	{
-		$this->session->session_destroy();
-		redirect(base_url(''));
-	}
+	
 }

@@ -17,3 +17,4 @@ Updates
 	- deleted Foundation ( ang kumplikado ng docu di ko gets ) instead pinalitan ko ng bootstrap ulet HAHA!
 - [3/15/2013] finalized all the folder structures,ready for coding na! :)) 
 - [3/18/2013] done with login , registration still have bugs 
+- [3/22/2013] done with the UI of the Administrator, added blog table in the sql

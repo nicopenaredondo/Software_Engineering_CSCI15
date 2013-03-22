@@ -38,23 +38,32 @@
 |
 */
 
-//main page routes
-$route['default_controller'] = "front_store/controller_front_store/index";
+//front store routes
+$route['default_controller'] 	= "front_store/controller_front_store/index";
+$route['my_account']			= "front_store/controller_front_store/my_account";
+$route['my_account/logout']	 	= "front_store/controller_front_store/logout";
 
+//back store
+$route['admin']  				= 'back_store/controller_back_store_main/index';
+$route['admin/order']			= 'back_store/controller_back_store_order/index';
+$route['admin/customer'] 		= 'back_store/controller_back_store_customer/index';
+$route['admin/report']			= 'back_store/controller_back_store_report/index';
+$route['admin/category']		= 'back_store/controller_back_store_category/index';
+$route['admin/product']			= 'back_store/controller_back_store_product/index';
+$route['admin/content']			= 'back_store/controller_back_store_content/index';
+$route['admin/logout']			= 'back_store/controller_back_store_main/logout';
 
 //login routes
-$route['auth'] 		 	 = 'front_store/controller_front_store_login/index';
-$route['auth/login']     = 'front_store/controller_front_store_login/login';
+$route['auth'] 		 	 		= 'front_store/controller_front_store_login/index';
+$route['auth/login']    		= 'front_store/controller_front_store_login/login';
 
 //registration routes
-$route['auth/register'] = 'front_store/controller_front_store_registration/index'; 
-$route['auth/register/new'] = 'front_store/controller_front_store_registration/register'; 
+$route['auth/register'] 		= 'front_store/controller_front_store_registration/index'; 
+$route['auth/register/new'] 	= 'front_store/controller_front_store_registration/register'; 
 //etc
-$route['404_override'] = '';
+$route['404_override'] 			= '';
 
-//administrator
-$route['admin'] = 'back_store/controller_back_store_main/index';
-//$route['admin/dashboard'] = 'back_store/controller_back_store_main/dashboard';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

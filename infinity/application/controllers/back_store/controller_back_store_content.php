@@ -1,5 +1,5 @@
 <?php
-class Controller_back_store_main extends CI_Controller
+class Controller_back_store_content extends CI_Controller
 {
 	public function __construct()
 	{
@@ -33,29 +33,7 @@ class Controller_back_store_main extends CI_Controller
 	public function index()
 	{
 		$this->header();
-		$this->load->view('back_store/dashboard');
+		$this->load->view('back_store/content');
 		$this->footer();
-		/*
-		if($this->is_logged_in == TRUE)
-		{
-			$this->load->view('back_store/home');
-		}else{
-			$this->load->view('back_store/login');
-		}
-		*/
 	}
-
-	public function dashboard()
-	{
-		$this->load->view('template/header');
-		$this->load->view('back_store/dashboard');
-		$this->load->view('template/footer');
-	}
-
-	public function logout()
-	{
-		$this->session->sess_destroy();
-		redirect(base_url(''));
-	}
-
 }

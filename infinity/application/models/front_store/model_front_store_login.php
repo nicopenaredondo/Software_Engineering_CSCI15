@@ -25,8 +25,9 @@ class Model_front_store_login extends CI_Model
 		{
 			$row = $query->row();
 			$data = array(
-				'id' => $row->id,
-				'logged_in' => TRUE,
+				'id' 		   => $row->id,
+				'username' 	   => $row->username,
+				'logged_in'    => TRUE,
 				'account_type' => $row->account_type
 				);
 			$this->session->set_userdata($data);

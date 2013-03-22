@@ -11,20 +11,20 @@ class Controller_front_store_registration extends CI_Controller
 	{
 		$view_data['message'] = $message;
 		$this->header();
-		$this->load->view('view_front_store/registration',$view_data);
+		$this->load->view('front_store/registration',$view_data);
 		$this->footer();
 	}
 
 	private function header($attr = NULL)
 	{
 	$header_data['attr'] = $attr;
-	$this->load->view('template/header',$header_data);
+	$this->load->view('template/front_store/header',$header_data);
 	}
 
 	private function footer($attr = NULL)
 	{
 	$footer_data['attr'] = $attr;
-	$this->load->view('template/footer',$footer_data);
+	$this->load->view('template/back_store/footer',$footer_data);
 	}
 
 	public function register()
@@ -49,9 +49,9 @@ class Controller_front_store_registration extends CI_Controller
 			if($results === TRUE)
 			{
 				//if the user is registered,it will redirect to customer page
-				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Registration Failed</div>";
+				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>Registration Success</div>";
 				$this->session->set_flashdata('message', $message);
-				 redirect(base_url('auth/register'));
+				 redirect(base_url('auth/login'));
 			}else{
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Registration Failed</div>";
