@@ -13,18 +13,22 @@ class Model_front_store_registration extends CI_Model
 
 	public function register()
 	{
-		$username = $this->input->post('username',TRUE);
-		$email		 = $this->input->post('email_address',TRUE);
-		$password = $this->input->post('password',TRUE);
+		//FOR TABLE `USER`
+		$username 			= $this->input->post('username',TRUE);
+		$password 			= $this->input->post('password',TRUE);
+		$email	  			= $this->input->post('email'   ,TRUE);
+		$account_type		= 'customer';
+		$hasProfile			= FALSE;
 
-		$data = array(
-			'username' => $username,
-			'email'		 => $email,
-			'password'	 => $password,
-			'account_type' => 'customer',
-			'hasProfile'	 => 0
-			);
-		$result = $this->db->insert('users',$data);
+		$data_user 			= array(
+				'username'		=>	$username,
+				'password'		=>	$password,
+				'email'			=>	$email,
+				'account_type'	=>	$account_type,
+				'hasProfile'	=> 	$hasProfile
+				);
+		
+		$result = $this->db->insert('users',$data_user);
 		if($result === TRUE)
 		{
 			return TRUE;
