@@ -18,5 +18,6 @@ Updates
 - [3/15/2013] finalized all the folder structures,ready for coding na! :)) 
 - [3/18/2013] done with login , registration still have bugs 
 - [3/22/2013] done with the UI of the Administrator, added blog table in the sql
-- [3/25/2013] added model (order,customer) to follow
-	- controller and view for order and customer
+- [3/25/2013] added model (order,customer,category,product) to follow
+	- controller and view for order,customer,category,product
+	- still thinking of whats the point having a content controller and model LOL! /wrist
