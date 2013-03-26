@@ -1,5 +1,5 @@
 <?php 
-class Model_back_store_customer extends CI
+class Model_back_store_customer extends CI_Model
 {
 	public function __construct()
 	{
@@ -8,8 +8,9 @@ class Model_back_store_customer extends CI
 
 	public function list_all_users()
 	{
-		$this->db->select('*')
+		$this->db->select('users.id,users.username,user_profiles.first_name,user_profiles.last_name')
 						 ->from('users')
+						 ->join('user_profiles','user_profiles.user_id = users.id','left')
 						 ->where('account_type','customer');
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
@@ -19,7 +20,7 @@ class Model_back_store_customer extends CI
 			return false;
 	}
 
-	public function view_user($slug = FALSE);
+	public function view_user($slug = FALSE)
 	{
 		if($slug === FALSE)
 		{
@@ -28,7 +29,7 @@ class Model_back_store_customer extends CI
 
 		$this->db->select('*')
 						 ->from('users')
-						 ->join('user_profiles','user_profiles.user_id = users.id')
+						 ->join('user_profiles','user_profiles.user_id = users.id','left')
 						 ->where('users.id',$slug);
 
 		$result = $this->db->get();
@@ -36,7 +37,32 @@ class Model_back_store_customer extends CI
 		{
 			return $result->row_array();
 		}
-			return false;
+			return show_404();
+	}
+
+	public function add_user()
+	{
+		//FOR TABLE `USER`
+		$username 			= $this->input->post('username',TRUE);
+		$password 			= $this->input->post('password',TRUE);
+		$email	  			= $this->input->post('email'   ,TRUE);
+		$account_type		= 'customer';
+		$hasProfile			= FALSE;
+
+		$data_user 			= array(
+				'username'		=>	$username,
+				'password'		=>	$password,
+				'email'			=>	$email,
+				'account_type'	=>	$account_type,
+				'hasProfile'	=> 	$hasProfile
+				);
+		
+		$result = $this->db->insert('users',$data_user);
+		if($result === TRUE)
+		{
+			return TRUE;
+		}
+			return FALSE;
 	}
 
 	public function modify_user($slug = FALSE)

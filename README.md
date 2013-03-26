@@ -21,3 +21,6 @@ Updates
 - [3/25/2013] added model (order,customer,category,product) to follow
 	- controller and view for order,customer,category,product
 	- still thinking of whats the point having a content controller and model LOL! /wrist
+- [3/26/2013] organize all the crud routes.
+	- coding the back_end_controller_customer and working on its views
+	
