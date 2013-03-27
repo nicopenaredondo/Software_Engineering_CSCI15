@@ -10,7 +10,18 @@ class Model_back_store_product extends CI_Model
 	{
 		$this->db->select('*')
 				->from('product')
-				->join('category','category.category_id = product.category_id');
+				->join('category','category.category_id = product.category_id','left');
+		$result = $this->db->get();
+		if($result->num_rows() > 0)
+		{
+			return $result->result_array();
+		}
+			return false;
+	}
+
+	public function list_all_category()
+	{
+		$this->db->select('*')->from('category');
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
@@ -28,7 +39,7 @@ class Model_back_store_product extends CI_Model
 
 		$this->db->select('*')
 						 ->from('product')
-						 ->join('category','category.category_id = product.category_id');
+						 ->join('category','category.category_id = product.category_id','left')
 						 ->where('product.product_id',$slug);
 
 		$result = $this->db->get();
@@ -63,13 +74,10 @@ class Model_back_store_product extends CI_Model
 			return false;
 	}
 
-	public function modify_product($slug = FALSE)
+	public function modify_product()
 	{
-		if($slug === FALSE)
-		{
-			return show_404();
-		}
-
+		
+		$product_id				= $this->input->post('product_id',TRUE);
 		$category_id  	     	= $this->input->post('category_id',TRUE);
 		$product_name 		 	= $this->input->post('product_name',TRUE);
 		$product_description 	= $this->input->post('product_description',TRUE);
@@ -84,7 +92,7 @@ class Model_back_store_product extends CI_Model
 			'product_stock_quantity'=>	$product_stock_quantity
 			);
 		//for more info abou Active Record class please see the documentation
-		$result = $this->db->update('product',$data_array,array('product_id' => $slug));
+		$result = $this->db->update('product',$data_array,array('product_id' => $product_id));
 
 		if($result === TRUE)
 		{

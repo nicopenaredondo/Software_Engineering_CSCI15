@@ -55,21 +55,23 @@ $route['admin/order/delete/(:any)']		= 'back_store/controller_back_store_order/d
 $route['admin/customer'] 				= 'back_store/controller_back_store_customer/index';
 $route['admin/customer/(:num)']			= 'back_store/controller_back_store_customer/index/$1';
 $route['admin/customer/new']			= 'back_store/controller_back_store_customer/add_customer';
-$route['admin/customer/modify']			= 'back_store/controller_back_store_customer/modify_customer/$1';
 $route['admin/customer/delete/(:any)']	= 'back_store/controller_back_store_customer/delete_customer/$1';
+$route['admin/customer/user-profile/modify'] = 'back_store/controller_back_store_customer/modify_customer_profile';
+$route['admin/customer/user-account/modify'] = 'back_store/controller_back_store_customer/modify_customer_account';
+
 
 $route['admin/report']					= 'back_store/controller_back_store_report/index';
 
 $route['admin/category']				= 'back_store/controller_back_store_category/index';
 $route['admin/category/(:num)']			= 'back_store/controller_back_store_category/view_category/$1';
 $route['admin/category/new']			= 'back_store/controller_back_store_category/add_category';
-$route['admin/category/modify/']		= 'back_store/controller_back_store_category/modify_category/$1';
+$route['admin/category/modify']			= 'back_store/controller_back_store_category/modify_category';
 $route['admin/category/delete/(:num)']	= 'back_store/controller_back_store_category/delete_category/$1';
 
 $route['admin/product']					= 'back_store/controller_back_store_product/index';
-$route['admin/product/(:num)']			= 'back_store/controller_back_store_product/view_product/$1';
+$route['admin/product/(:num)']			= 'back_store/controller_back_store_product/index/$1';
 $route['admin/product/new']				= 'back_store/controller_back_store_product/add_product';
-$route['admin/product/modify/(:num)']	= 'back_store/controller_back_store_product/modify_product/$1';
+$route['admin/product/modify']			= 'back_store/controller_back_store_product/modify_product';
 $route['admin/product/delete/(:num)']	= 'back_store/controller_back_store_product/delete_product/$1';
 
 $route['admin/content']					= 'back_store/controller_back_store_content/index';

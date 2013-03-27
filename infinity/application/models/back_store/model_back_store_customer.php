@@ -27,7 +27,10 @@ class Model_back_store_customer extends CI_Model
 			return show_404();
 		}
 
-		$this->db->select('*')
+		$this->db->select('users.id,users.username,users.password,users.email,
+						user_profiles.first_name,user_profiles.last_name,user_profiles.address,
+						user_profiles.zip_code,user_profiles.city,user_profiles.telephone,
+						user_profiles.mobile,user_profiles.country,user_profiles.website')
 						 ->from('users')
 						 ->join('user_profiles','user_profiles.user_id = users.id','left')
 						 ->where('users.id',$slug);
@@ -57,36 +60,30 @@ class Model_back_store_customer extends CI_Model
 				'hasProfile'	=> 	$hasProfile
 				);
 		
-		$result = $this->db->insert('users',$data_user);
-		if($result === TRUE)
+		$result  = $this->db->insert('users',$data_user);
+
+		$result2 = $this->db->insert('user_profiles',array('user_id'=>$this->db->insert_id()));
+		if($result === TRUE && $result2 === TRUE)
 		{
 			return TRUE;
 		}
 			return FALSE;
 	}
 
-	public function modify_user($slug = FALSE)
+	public function modify_user_account()
 	{
-		if($slug === FALSE)
-		{
-			return show_404();
-		}
-		//FOR TABLE `USER`
-		$username 			= $this->input->post('username',TRUE);
-		$password 			= $this->input->post('password',TRUE);
-		$email	  			= $this->input->post('email'   ,TRUE);
-		$account_type		= 'customer';
-		$hasProfile			= FALSE;
-
+		
+		
+		$user_id 	= $this->input->post('user_id',TRUE);
+		$password 	= $this->input->post('password',TRUE);
+		$email	  	= $this->input->post('email'   ,TRUE);
+		
 		$data_user 			= array(
-				'username'		=>	$username,
 				'password'		=>	$password,
-				'email'				=>	$email,
-				'account_type'=>	$account_type,
-				'hasProfile'	=> 	$hasProfile
+				'email'			=>	$email,
 				);
 
-		$this->db->where('id',$slug);
+		$this->db->where('id',$user_id);
 		$result = $this->db->update('users',$data_user);
 
 		if($result === TRUE)
@@ -96,36 +93,31 @@ class Model_back_store_customer extends CI_Model
 				return false;
 	}
 
-	public function modify_user_profiles($slug = FALSE)
+	public function modify_user_profile()
 	{
-		if($slug === FALSE)
-		{
-			return show_404();
-		}
+		$user_id 		= $this->input->post('user_id',TRUE);
 		$first_name	    = $this->input->post('first_name',TRUE);
 		$last_name		= $this->input->post('last_name' ,TRUE);
-		$company 		= $this->input->post('company'   ,TRUE);
 		$address		= $this->input->post('address'	 ,TRUE);
-		$address2		= $this->input->post('address2'	 ,TRUE);
 		$zip_code		= $this->input->post('zip_code'	 ,TRUE);
 		$city			= $this->input->post('city'		 ,TRUE);
 		$telephone	 	= $this->input->post('telephone' ,TRUE);
+		$mobile	 		= $this->input->post('mobile' ,TRUE);
 		$country		= $this->input->post('country'	 ,TRUE);
 		$website		= $this->input->post('website'	 ,TRUE);
 	
 		$data_user_profile = array(
 				'first_name'		=>	$first_name,
 				'last_name'			=>	$last_name,
-				'company'			=>	$company,
 				'address'			=>	$address,
-				'address2'			=>	$address2,
 				'zip_code'			=>	$zip_code,
 				'city'				=>	$city,
 				'telephone'			=>	$telephone,
+				'mobile'			=>  $mobile,
 				'country'			=>	$country,
 				'website'			=>	$website	
 				);
-		$this->db->where('user_id',$slug);
+		$this->db->where('user_id',$user_id);
 		$result = $this->db->update('user_profiles',$data_user_profile);
 
 		if($result === TRUE)
@@ -135,7 +127,7 @@ class Model_back_store_customer extends CI_Model
 			return false;
 	}
 
-	public function delete_customer($slug = FALSE)
+	public function delete_user($slug = FALSE)
 	{
 		if($slug === FALSE)
 		{
@@ -146,6 +138,17 @@ class Model_back_store_customer extends CI_Model
 		$delete_user_profile	= $this->db->delete('user_profiles',array('user_id' => $slug));
 		
 		if($delete_user === TRUE && $delete_user_profile === TRUE)
+		{
+			return true;
+		}
+			return false;
+	}
+
+	public function check_valid_password($password)
+	{
+		$this->db->where('password',$password);
+		$query = $this->db->get('users');
+		if($query->num_rows() > 0)
 		{
 			return true;
 		}

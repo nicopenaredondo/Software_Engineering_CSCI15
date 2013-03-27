@@ -16,7 +16,7 @@ class Model_front_store_registration extends CI_Model
 		//FOR TABLE `USER`
 		$username 			= $this->input->post('username',TRUE);
 		$password 			= $this->input->post('password',TRUE);
-		$email	  			= $this->input->post('email'   ,TRUE);
+		$email	  			= $this->input->post('email_address'   ,TRUE);
 		$account_type		= 'customer';
 		$hasProfile			= FALSE;
 
@@ -29,7 +29,9 @@ class Model_front_store_registration extends CI_Model
 				);
 		
 		$result = $this->db->insert('users',$data_user);
-		if($result === TRUE)
+
+		$result2 = $this->db->insert('user_profiles',array('user_id'=>$this->db->insert_id()));
+		if($result === TRUE && $result2 === TRUE)
 		{
 			return TRUE;
 		}

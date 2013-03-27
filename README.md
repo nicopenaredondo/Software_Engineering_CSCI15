@@ -23,4 +23,6 @@ Updates
 	- still thinking of whats the point having a content controller and model LOL! /wrist
 - [3/26/2013] organize all the crud routes.
 	- coding the back_end_controller_customer and working on its views
+- [3/27/2013] working the view back end of the products
+	- coding the modify function 
 	

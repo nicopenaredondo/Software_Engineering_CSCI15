@@ -15,7 +15,7 @@
 	  </div>
 	</div><!--modal hide fade-->
 		<!--debug mode-->
-
+		<?php echo $this->session->flashdata('message');?>
 		<h3 style="font-family: 'Roboto Condensed';">List of Customers
 			<div class="input-prepend input-append pull-right" style="margin-top:5px;">
 		      <span class="add-on">Customer Name :</span>
@@ -33,7 +33,7 @@
 		    <div class="caption">
 		      <h3><?php echo $customer['first_name'].' '.$customer['last_name'];?></h3>
 		      <p align="center">
-					<a href="<?php echo base_url('admin/customer/'.$customer['id']);?>" class="btn btn-primary btn-block"><i class="icon-edit"></i>Modify</a>
+			  <a href="<?php echo base_url('admin/customer/'.$customer['id']);?>" class="btn btn-primary btn-block"><i class="icon-edit"></i>Modify</a>
 		      <a href="<?php echo base_url('admin/customer/delete/'.$customer['id']);?>" class="btn btn-danger btn-block"><i class="icon-remove"></i>Delete</a>
 		      </p>
 		    </div>

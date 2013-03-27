@@ -37,7 +37,7 @@ class Controller_back_store_customer extends CI_Controller
 		if($id == NULL)
 		{
 		$this->header();
-		$view_data['list_all_customer'] 		= $this->model_back_store_customer->list_all_users();
+		$view_data['list_all_customer'] 	= $this->model_back_store_customer->list_all_users();
 		$this->load->view('back_store/customer',$view_data);
 		$this->footer();
 		}else
@@ -50,7 +50,7 @@ class Controller_back_store_customer extends CI_Controller
 	}
 
 
-	public function add_user()
+	public function add_customer()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
 		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
@@ -87,15 +87,15 @@ class Controller_back_store_customer extends CI_Controller
 		}
 	}
 
-	public function modify_user()
+	public function modify_customer_account()
 	{
 		
 
-		$this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
-		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
-		$this->form_validation->set_rules('email_address','Email Address','required|trim|xss_clean');
-		$this->form_validation->set_rules('password','Password','required|trim|xss_clean');
-		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
+		$this->form_validation->set_rules('current_password','Current Password','required|xss_clean|trim|callback_check_valid_password');
+		$this->form_validation->set_rules('password','New Password','required|xss_clean|trim');
+		$this->form_validation->set_rules('reenter_password','Confirm Password','required|xss_clean|trim|matches[password]');
+		$this->form_validation->set_rules('email','Email','required|xss_clean|trim|email');
 		// if the form passed the rules
 		if($this->form_validation->run() ===  TRUE)
 		{
@@ -106,27 +106,65 @@ class Controller_back_store_customer extends CI_Controller
 			*/
 
 			//it will validate if the user is registered into the system
-			$results = $this->model_back_store_customer->modify_user($slug);
+			$results = $this->model_back_store_customer->modify_user_account();
 			if($results === TRUE)
 			{
 				//if the user is registered,it will redirect to customer page
-				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>Registration Success</div>";
+				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully this user account </div>";
 				$this->session->set_flashdata('message', $message);
-				 redirect(base_url('admin/customer'));
+				 redirect(base_url('admin/customer/'.$this->input->post('user_id')));
 			}else{
 				//if not. it will throw an error
-				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Registration Failed</div>";
+				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this account. Please try again later</div>";
 				$this->session->set_flashdata('message', $message);
 				 redirect(base_url('admin/customer'));
 			}
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
-			$this->index();
+			$this->index($this->input->post('user_id'));
 		}
 	}
 
-	public function delete_user($slug = NULL)
+	public function modify_customer_profile()
+	{
+		
+
+		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
+		$this->form_validation->set_rules('first_name','First Name','required|xss_clean|trim');
+		$this->form_validation->set_rules('last_name','Last Name','required|xss_clean|trim');
+		$this->form_validation->set_rules('address','Address','required|xss_clean|trim');
+		// if the form passed the rules
+		if($this->form_validation->run() ===  TRUE)
+		{
+			
+			/** 
+			*modify_user function
+			*@return BOOLEAN
+			*/
+
+			//it will validate if the user is registered into the system
+			$results = $this->model_back_store_customer->modify_user_profile();
+			if($results === TRUE)
+			{
+				//if the user is registered,it will redirect to customer page
+				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully modified this user profile </div>";
+				$this->session->set_flashdata('message', $message);
+				 redirect(base_url('admin/customer/'.$this->input->post('user_id')));
+			}else{
+				//if not. it will throw an error
+				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this account. Please try again later</div>";
+				$this->session->set_flashdata('message', $message);
+				 redirect(base_url('admin/customer'));
+			}
+		}else
+		{
+			//if the form does not passed the rules.it will go back to the login page
+			$this->index($this->input->post('user_id'));
+		}
+	}
+
+	public function delete_customer($slug = NULL)
 	{
 		if($slug == NULL)
 		{
@@ -137,14 +175,33 @@ class Controller_back_store_customer extends CI_Controller
 
 		if($result == TRUE)
 			{
-				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-success">Successfully deleted a category</div>';
+				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-success">Successfully deleted a customer</div>';
 				$this->session->set_flashdata('message',$msg);
 				redirect(base_url('admin/customer'));
 			}else
 			{
-				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-danger"><i class="icon-ok"></i>Failed to delete the category</div>';
+				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-danger"><i class="icon-ok"></i>Failed to delete a customer</div>';
 				$this->session->set_flashdata('message',$msg);
 				redirect(base_url('admin/customer'));
 			}
+	}
+
+	/**
+	*
+	*
+	* CALLBACKS!!
+	* @return boolean 
+	*
+	*/
+
+	public function check_valid_password($password)
+	{
+		$result = $this->model_back_store_customer->check_valid_password($password);
+		if($result === TRUE)
+		{
+			return true;
+		}
+			$this->form_validation->set_message('check_valid_password', 'Your Current Password is wrong"');
+			return false;
 	}
 }
