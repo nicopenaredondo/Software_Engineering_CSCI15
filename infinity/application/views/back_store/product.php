@@ -18,24 +18,24 @@
       <h3 style="font-family: 'Roboto Condensed';">List of Products
         <div class="input-prepend input-append pull-right" style="margin-top:5px;">
           <span class="add-on">Product name :</span>
-          <input class="span7" id="appendedInputButtons" placeholder="Search Order" type="text">
+          <input class="span7" id="appendedInputButtons" placeholder="Search Product" type="text">
           <button class="btn btn-primary" type="button"><i class="icon-search icon-white"></i></button>
         </div>
       </h3>
-    <a href="#" class="btn btn-primary">Add New</a>
-    <hr>  
+    <a href="<?php echo base_url('admin/product/add-new-product');?>" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-pencil"></i>Add New</a>
+    <hr>    
     </div><!--span12-->
   </div><!--row-->
   <div class="row">
     <div class="span12">
       <table class="table table-hover">
       <thead>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Product Description</th>
-        <th>Product Price</th>
-        <th>Category</th>
-        <th>Actions</th>
+        <th width="10%">Product ID</th>
+        <th width="20%">Product Name</th>
+        <th width="20%">Product Description</th>
+        <th width="20%">Product Price</th>
+        <th width="20%">Category</th>
+        <th width="20%">Actions</th>
       </thead>
       <?php foreach($list_all_products as $product):?>
       <tbody>
@@ -46,13 +46,16 @@
         <td><?php echo $product['category_name'];?></td>
         <td>
           <div class="btn-group">
-            <a href="<?php echo base_url('admin/product/'.$product['product_id']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
+            <a href="<?php echo base_url('admin/product/info/'.$product['product_id']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
             <a href="<?php echo base_url('admin/product/delete/'.$product['product_id']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
           </div><!--btn-group-->
         </td>
       </tbody>
       <?php endforeach;?>
       </table><!--table table-hover-->  
+        <div class="pull-right">
+        <?php echo $paginate_links;?>
+        </div><!--pull-right-->
     </div><!--span12-->
   </div><!--row-->
 </div><!--container-->

@@ -1,13 +1,14 @@
 <?php
 class Model_back_store_category extends CI_Model
 {
-	public function __construct();
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	public function list_all_category()
+	public function list_all_category($offset,$limit)
 	{
+		$this->db->limit($offset,$limit);
 		$this->db->select('*')->from('category');
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
@@ -40,10 +41,11 @@ class Model_back_store_category extends CI_Model
 	{
 		$category_name 		 	= $this->input->post('category_name',TRUE);
 		$category_description 	= $this->input->post('category_description',TRUE);
-		
+		$category_slug 			= url_title($this->input->post('category_slug'),'dash',TRUE);
 		$data_array = array(
 			'category_name'			=>	$category_name,
-			'category_description'	=>	$category_description
+			'category_description'	=>	$category_description,
+			'category_slug'			=>  $category_slug
 			);
 
 		$result = $this->db->insert('category',$data_array);
@@ -54,23 +56,21 @@ class Model_back_store_category extends CI_Model
 			return false;
 	}
 
-	public function modify_category($slug = FALSE)
+	public function modify_category()
 	{
-		if($slug === FALSE)
-		{
-			return show_404();
-		}
-
+		
+		$category_id			= $this->input->post('category_id',TRUE);
 		$category_name 		 	= $this->input->post('category_name',TRUE);
 		$category_description 	= $this->input->post('category_description',TRUE);
-		
+		$category_slug 			= url_title($this->input->post('category_slug'),'dash',TRUE);
 		$data_array = array(
 			'category_name'			=>	$category_name,
-			'category_description'	=>	$category_description
+			'category_description'	=>	$category_description,
+			'category_slug'			=>  $category_slug
 			);
 
 		//for more info abou Active Record class please see the documentation
-		$result = $this->db->update('category',$data_array,array('category_id' => $slug));
+		$result = $this->db->update('category',$data_array,array('category_id' => $category_id));
 
 		if($result === TRUE)
 		{
@@ -92,5 +92,10 @@ class Model_back_store_category extends CI_Model
 			return true;
 		}
 			return false;
+	}
+
+	public function category_count()
+	{
+		return $this->db->count_all('category');
 	}
 }

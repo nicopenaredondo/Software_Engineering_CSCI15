@@ -33,7 +33,7 @@
 		    <div class="caption">
 		      <h3><?php echo $customer['first_name'].' '.$customer['last_name'];?></h3>
 		      <p align="center">
-			  <a href="<?php echo base_url('admin/customer/'.$customer['id']);?>" class="btn btn-primary btn-block"><i class="icon-edit"></i>Modify</a>
+			  <a href="<?php echo base_url('admin/customer/info/'.$customer['id']);?>" class="btn btn-primary btn-block"><i class="icon-edit"></i>Modify</a>
 		      <a href="<?php echo base_url('admin/customer/delete/'.$customer['id']);?>" class="btn btn-danger btn-block"><i class="icon-remove"></i>Delete</a>
 		      </p>
 		    </div>
@@ -41,6 +41,9 @@
 		</li>
 		<?php endforeach;?>
 		</ul><!--thumbnails-->
+		<div class="pull-right">
+        <?php echo $paginate_links;?>
+        </div><!--pull-right-->
 			</div><!--span12-->
 			</div><!--row-->
 		</div><!--container-->

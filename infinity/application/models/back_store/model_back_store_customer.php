@@ -6,8 +6,9 @@ class Model_back_store_customer extends CI_Model
 		parent::__construct();
 	}
 
-	public function list_all_users()
-	{
+	public function list_all_users($offset,$limit)
+	{	
+		$this->db->limit($offset,$limit);
 		$this->db->select('users.id,users.username,user_profiles.first_name,user_profiles.last_name')
 						 ->from('users')
 						 ->join('user_profiles','user_profiles.user_id = users.id','left')
@@ -154,5 +155,16 @@ class Model_back_store_customer extends CI_Model
 		}
 			return false;
 	}
+
+	public function customer_count()
+	{
+		$this->db->select('id')
+				->from('users')
+				->where('account_type','customer');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
 
 }

@@ -6,8 +6,10 @@ class Model_back_store_product extends CI_Model
 		parent::__construct();
 	}
 	
-	public function list_all_products()
+	public function list_all_products($offset,$limit)
 	{
+		$this->db->limit($offset,$limit);
+
 		$this->db->select('*')
 				->from('product')
 				->join('category','category.category_id = product.category_id','left');
@@ -114,5 +116,18 @@ class Model_back_store_product extends CI_Model
 			return true;
 		}
 			return false;
+	}
+
+	/**
+	*
+	*
+	* KUNG ANO ANONG FUNCTIONS HAHAHA LOL
+	*
+	*
+	**/
+
+	public function product_count()
+	{
+		return $this->db->count_all('product');
 	}
 }

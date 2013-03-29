@@ -33,21 +33,50 @@ class Controller_back_store_customer extends CI_Controller
 
 	public function index($id = NULL)
 	{
-		//if theres no id in the url show all the list of the customer
-		if($id == NULL)
-		{
+		//start pagination config
+			$config = array();
+			$config['base_url'] 				= base_url('admin/customer');
+			$config['total_rows']				= $this->model_back_store_customer->customer_count();
+			$config['per_page']					= 3;
+			//$config['uri_segment']		= 3;
+			$config['full_tag_open'] 		= '<div class="pagination paginat"><ul>';
+			$config['full_tag_close']		= '</ul></div>';
+			$config['prev_tag_open'] 		= '<li>';
+			$config['prev_tag_close']		= '</li>';
+			$config['cur_tag_open'] 		= '<li class="active"><a>';
+			$config['cur_tag_close'] 		= '</li></a>';
+			$config['num_tag_open'] 		= '<li>';
+			$config['num_tag_close'] 		= '</li>';
+			$config['next_tag_open'] 		= '<li>';
+			$config['next_tag_close']		= '</li>';
+			$config['last_tag_open'] 		= '<li>';
+			$config['last_tag_close']		= '</li>';
+			$config['first_tag_open'] 	= '<li>';
+			$config['first_tag_close']  = '</li>';
+
+		$this->pagination->initialize($config);
 		$this->header();
-		$view_data['list_all_customer'] 	= $this->model_back_store_customer->list_all_users();
+		$view_data['list_all_customer'] 	= $this->model_back_store_customer->list_all_users($config['per_page'],$id);
+		$view_data['paginate_links']			= $this->pagination->create_links();
 		$this->load->view('back_store/customer',$view_data);
 		$this->footer();
-		}else
+	
+	}
+
+	public function customer_info($slug = NULL)
+	{
+		if($slug == NULL)
 		{
+			return show_404();
+		}
+
 		$this->header();
-		$view_data['customer_information']	=	$this->model_back_store_customer->view_user($id);
+		$view_data['customer_information']	=	$this->model_back_store_customer->view_user($slug);
 		$this->load->view('back_store/view_customer',$view_data);
 		$this->footer();
-		}
 	}
+
+
 
 
 	public function add_customer()

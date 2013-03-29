@@ -1,6 +1,22 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
+			<div class="row">
+			<!--debug mode-->
+			<a href="#myModal" role="button" class="btn btn-inverse" data-toggle="modal">Debug Mode</a>
+		 	<!-- Modal -->
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Debugger</h3>
+			  </div>
+			  <div class="modal-body" style="height:200px;">
+			    <pre style="background-color:black;color:green;"><?php print_r($list_all_category);?></pre>
+			  </div>
+			</div><!--modal hide fade-->
+			<!--debug mode-->
+			</div><!--row-->
+			<?php echo $this->session->flashdata('message');?>
 			<h3 style="font-family: 'Roboto Condensed';">List of Category
 			<div class="input-prepend input-append pull-right" style="margin-top:5px;">
 		      <span class="add-on">Category name:</span>
@@ -8,7 +24,7 @@
 		      <button class="btn btn-primary" type="button"><i class="icon-search icon-white"></i></button>
 		  	</div>
 			</h3>
-		<a href="#" class="btn btn-primary">Add New</a>
+		<a href="<?php echo base_url('admin/category/add-new-category');?>" class="btn btn-primary">Add New</a>
 		<hr>	
 		</div><!--span12-->
 	</div><!--row-->
@@ -19,42 +35,27 @@
 				<th>Category ID</th>
 				<th>Category Name</th>
 				<th>Category Description</th>
+				<th>Category Slug</th>
 				<th>Actions</th>
 			</thead>
-			<tbody>
-				<td>1</td>
-				<td>Makeup</td>
-				<td>All about makeup</td>
-				<td>
-					<div class="btn-group">
-						<a href="#" class="btn btn-primary"><i class="icon-edit"></i></a>
-						<a href="#" class="btn btn-danger"><i class="icon-trash"></i></a>
-					</div>
-				</td>
-			</tbody>
-			<tbody>
-				<td>2</td>
-				<td>Bags</td>
-				<td>All about bags</td>
-				<td>
-					<div class="btn-group">
-						<a href="#" class="btn btn-primary"><i class="icon-edit"></i></a>
-						<a href="#" class="btn btn-danger"><i class="icon-trash"></i></a>
-					</div>
-				</td>
-			</tbody>
-			<tbody>
-				<td>3</td>
-				<td>Accessories</td>
-				<td>All about accessories</td>
-				<td>
-					<div class="btn-group">
-						<a href="#" class="btn btn-primary"><i class="icon-edit"></i></a>
-						<a href="#" class="btn btn-danger"><i class="icon-trash"></i></a>
-					</div>
-				</td>
-			</tbody>
+			<?php foreach($list_all_category as $category):?>
+				<tbody>
+					<td><?php echo $category['category_id'];?></td>
+					<td><?php echo $category['category_name'];?></td>
+					<td><?php echo word_limiter($category['category_description'],10);?></td>
+					<td><?php echo $category['category_slug'];?></td>
+					<td width="10%">
+						<div class="btn-group">
+	            <a href="<?php echo base_url('admin/category/info/'.$category['category_id']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
+	            <a href="<?php echo base_url('admin/category/delete/'.$category['category_id']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
+	          </div><!--btn-group-->
+					</td>
+				</tbody>
+			<?php endforeach;?>
 			</table><!--table table-hover-->	
+			<div class="pull-right">
+        <?php echo $paginate_links;?>
+      </div><!--pull-right-->
 		</div><!--span12-->
 	</div><!--row-->
 </div><!--container-->
