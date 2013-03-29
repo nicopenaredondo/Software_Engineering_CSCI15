@@ -45,7 +45,7 @@ class Controller_front_store_login extends CI_Controller
 				$account_type = $this->session->userdata('account_type');
 				if($account_type == 'customer')
 				{
-					redirect(base_url(''));
+					redirect(base_url('dashboard'));
 				}elseif($account_type == 'administrator')
 				{
 					redirect(base_url('admin'));

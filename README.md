@@ -37,4 +37,4 @@ Updates
 	- blog (handling the validations)
 	- up next
 		- customer,product,categories ( slug )	
-	
+- [3/29/2013] account dashboard almost finished

@@ -40,8 +40,8 @@
 
 //front store routes
 $route['default_controller'] 			= "front_store/controller_front_store/index";
-$route['my_account']					= "front_store/controller_front_store/my_account";
-$route['my_account/logout']	 			= "front_store/controller_front_store/logout";
+$route['dashboard']						= "front_store/controller_front_store/my_account";
+$route['dashboard/logout']	 			= "front_store/controller_front_store/logout";
 
 //back store
 $route['admin']  						= 'back_store/controller_back_store_main/index';
