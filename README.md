@@ -25,9 +25,12 @@ Updates
 	- coding the back_end_controller_customer and working on its views
 - [3/27/2013] working the view back end of the products
 	- coding the modify function 
-- [3/28/2013] finished working the ff 
+- [3/28/2013] finished working the ff :
 	-product
 	-category (still need some validations)
 	-customer (need to 'add' button)
-	
+- [3/29/2013] working the ff : 
+	- blog (handling the validations)
+	- up next
+		- customer,product,categories	
 	
