@@ -111,7 +111,7 @@ class Controller_back_store_customer extends CI_Controller
 			}
 		}else
 		{
-			//if the form does not passed the rules.it will go back to the login page
+			//if the form does not passed the rules.it will go back to the index page
 			$this->index();
 		}
 	}
@@ -151,7 +151,7 @@ class Controller_back_store_customer extends CI_Controller
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
-			$this->index($this->input->post('user_id'));
+			$this->customer_info($this->input->post('user_id'));
 		}
 	}
 
@@ -179,17 +179,17 @@ class Controller_back_store_customer extends CI_Controller
 				//if the user is registered,it will redirect to customer page
 				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully modified this user profile </div>";
 				$this->session->set_flashdata('message', $message);
-				 redirect(base_url('admin/customer/'.$this->input->post('user_id')));
+				 redirect(base_url('admin/customer/info/'.$this->input->post('user_id')));
 			}else{
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this account. Please try again later</div>";
 				$this->session->set_flashdata('message', $message);
-				 redirect(base_url('admin/customer'));
+				 redirect(base_url('admin/customer/info/'));
 			}
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
-			$this->index($this->input->post('user_id'));
+			$this->customer_info($this->input->post('user_id'));
 		}
 	}
 

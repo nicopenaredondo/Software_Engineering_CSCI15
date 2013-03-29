@@ -30,6 +30,7 @@
 	</div><!--row-->
 	<div class="row">
 		<div class="span12">
+			<?php if(!empty($list_all_category)):?>
 			<table class="table table-hover">
 			<thead>
 				<th>Category ID</th>
@@ -53,6 +54,9 @@
 				</tbody>
 			<?php endforeach;?>
 			</table><!--table table-hover-->	
+			<?php else:?>
+		        <p style="text-align:center;">There are no category inside the database</p>
+		     <?php endif;?>
 			<div class="pull-right">
         <?php echo $paginate_links;?>
       </div><!--pull-right-->

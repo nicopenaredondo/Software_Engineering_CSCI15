@@ -25,6 +25,7 @@
 		</h3>
 		<a href="#" class="btn btn-primary"><i class="icon-plus-sign"></i>Add New</a>
 		<hr>
+		<?php if(!empty($list_all_customer)):?>
 		<ul class="thumbnails">
 		<?php foreach($list_all_customer as $customer):?>
 		<li class="span4">
@@ -41,6 +42,9 @@
 		</li>
 		<?php endforeach;?>
 		</ul><!--thumbnails-->
+		<?php else:?>
+        	<p style="text-align:center;">There are no customer inside the database</p>
+      	<?php endif;?>
 		<div class="pull-right">
         <?php echo $paginate_links;?>
         </div><!--pull-right-->

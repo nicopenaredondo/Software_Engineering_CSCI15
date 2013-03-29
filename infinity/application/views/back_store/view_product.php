@@ -33,7 +33,7 @@
 				    	<span class="label label-important">Required</span>
 				    </label>
 				  	<div class="controls">
-				      <input name="product_name" type="text" placeholder="Product Name" class="span6" value="<?php echo $product_information['product_name'];?>" required>
+				      <input name="product_name" type="text" placeholder="Product Name" class="span6" value="<?php echo $product_information['product_name'];?>" >
 				      <p class="help-block"></p>
 				    </div><!--control-label-->
 				  </div><!--control-group-->

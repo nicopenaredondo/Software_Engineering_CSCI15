@@ -79,11 +79,13 @@ $route['admin/product/new']				= 'back_store/controller_back_store_product/add_p
 $route['admin/product/modify']			= 'back_store/controller_back_store_product/modify_product';
 $route['admin/product/delete/(:num)']	= 'back_store/controller_back_store_product/delete_product/$1';
 
-$route['admin/content']					= 'back_store/controller_back_store_content/index';
-$route['admin/content/(:num)']			= 'back_store/controller_back_store_content/view_content/$1';
-$route['admin/content/new']				= 'back_store/controller_back_store_content/add_content';
-$route['admin/content/modify/']			= 'back_store/controller_back_store_content/modify_content/$1';
-$route['admin/content/delete/(:num)']	= 'back_store/controller_back_store_content/delete_content/$1';
+$route['admin/blog']					= 'back_store/controller_back_store_blog/index';
+$route['admin/blog/(:num)']				= 'back_store/controller_back_store_blog/index/$1';
+$route['admin/blog/info/(:any)']		= 'back_store/controller_back_store_blog/blog_info/$1';
+$route['admin/blog/add-new-blog']		= 'back_store/controller_back_store_blog/add_new_blog_page';
+$route['admin/blog/new']				= 'back_store/controller_back_store_blog/add_blog';
+$route['admin/blog/modify']				= 'back_store/controller_back_store_blog/modify_blog';
+$route['admin/blog/delete/(:num)']		= 'back_store/controller_back_store_blog/delete_blog/$1';
 
 $route['admin/logout']					= 'back_store/controller_back_store_main/logout';
 

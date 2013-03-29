@@ -152,7 +152,7 @@ class Controller_back_store_category extends CI_Controller
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
-			$this->add_new_category_page($this->input->post('category_id'));
+			$this->category_info($this->input->post('category_id'));
 		}
 	}
 

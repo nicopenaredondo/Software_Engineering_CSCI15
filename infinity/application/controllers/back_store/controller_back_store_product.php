@@ -33,6 +33,7 @@ class Controller_back_store_product extends CI_Controller
 
 	public function index($id = NULL)
 	{
+
 			if($id > $this->model_back_store_product->product_count())
 			{
 				redirect(base_url('admin/product'));
@@ -154,12 +155,12 @@ class Controller_back_store_product extends CI_Controller
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this product</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/product/'.$this->input->post('product_id')));
+				redirect(base_url('admin/product/info'.$this->input->post('product_id')));
 			}
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
-			$this->index($this->input->post('product_id'));
+			$this->product_info($this->input->post('product_id'));
 		}
 	}
 

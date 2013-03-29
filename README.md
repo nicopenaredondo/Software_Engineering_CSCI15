@@ -1,3 +1,7 @@
+URGENT : CUSTOMER & WEB DESIGN + SNS API'S  DUE TODAY! 
+==================================================
+
+
 OFFICIAL REPOSITORY OF SOFTWARE ENGINEERING CSCI15
 ==================================================
 
@@ -32,5 +36,5 @@ Updates
 - [3/29/2013] working the ff : 
 	- blog (handling the validations)
 	- up next
-		- customer,product,categories	
+		- customer,product,categories ( slug )	
 	

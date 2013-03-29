@@ -5,8 +5,10 @@
   <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.css');?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/todc-bootstrap.css');?>">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/wysiwyg/lib/css/wysiwyg-color.css');?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/wysiwyg/lib/css/bootstrap-wysihtml5.css');?>">
+  <!--<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>-->
 </head>
 <body>
 	<div class="navbar navbar-googlenav">
@@ -32,7 +34,7 @@
           </li><!--dropdown-->
 
           <li>
-           <a href="<?php echo base_url('admin/content');?>">Content</a>
+           <a href="<?php echo base_url('admin/blog');?>">Content</a>
           </li><!--dropdown-->           
         </ul><!--nav-->
         <div class="btn-group pull-right">
