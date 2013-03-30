@@ -40,16 +40,30 @@
 
 //front store routes
 $route['default_controller'] 			= "front_store/controller_front_store/index";
-$route['dashboard']						= "front_store/controller_front_store/my_account";
-$route['dashboard/logout']	 			= "front_store/controller_front_store/logout";
+
+//dashboard routes
+$route['dashboard']						= "front_store/controller_front_store_main/dashboard";
+//my-account routes
+$route['my-account']					= "front_store/controller_front_store_my_account/my_account_details";
+$route['my-account/profile/update']		= "front_store/controller_front_store_my_account/modify_user_profile";
+$route['my-account/account/update']		= "front_store/controller_front_store_my_account/modify_user_account";
+
+//my-order-routes
+$route['my-order']						= "front_store/controller_front_store_order/my_orders";
+$route['my-order/info/(:any)']			= "front_store/controller_front_store_order/order_info/$1";
+
+
+$route['dashboard/logout']	 			= "front_store/controller_front_store_main/logout";
 
 //back store
 $route['admin']  						= 'back_store/controller_back_store_main/index';
 
 $route['admin/order']					= 'back_store/controller_back_store_order/index';
-$route['admin/order/(:any)']			= 'back_store/controller_back_store_order/view_order/$1';
-$route['admin/order/new']				= 'back_store/controller_back_store_order/add_order';
-$route['admin/order/modify']			= 'back_store/controller_back_store_order/modify_order/$1';
+$route['admin/order/(:num)']			= 'back_store/controller_back_store_order/index/$1';
+$route['admin/order/info/(:any)']		= 'back_store/controller_back_store_order/order_info/$1';
+$route['admin/order/change-status']		= 'back_store/controller_back_store_order/modify_order_status';
+//$route['admin/order/new']				= 'back_store/controller_back_store_order/add_order';
+//$route['admin/order/modify']			= 'back_store/controller_back_store_order/modify_order/$1';
 $route['admin/order/delete/(:any)']		= 'back_store/controller_back_store_order/delete_order/$1';
 
 $route['admin/customer'] 				= 'back_store/controller_back_store_customer/index';

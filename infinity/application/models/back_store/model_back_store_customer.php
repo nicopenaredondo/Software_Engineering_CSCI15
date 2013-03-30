@@ -71,11 +71,17 @@ class Model_back_store_customer extends CI_Model
 			return FALSE;
 	}
 
-	public function modify_user_account()
+	public function modify_user_account($id = NULL )
 	{
+		if($id == NULL)
+		{
+			$user_id 	= $this->input->post('user_id',TRUE);
+		}else
+		{
+			$user_id 	= $id;
+		}
 		
 		
-		$user_id 	= $this->input->post('user_id',TRUE);
 		$password 	= $this->input->post('password',TRUE);
 		$email	  	= $this->input->post('email'   ,TRUE);
 		
@@ -94,9 +100,16 @@ class Model_back_store_customer extends CI_Model
 				return false;
 	}
 
-	public function modify_user_profile()
+	public function modify_user_profile($id = NULL)
 	{
-		$user_id 		= $this->input->post('user_id',TRUE);
+		if($id == NULL)
+		{
+			$user_id 	= $this->input->post('user_id',TRUE);
+		}else
+		{
+			$user_id 	= $id;
+		}
+		
 		$first_name	    = $this->input->post('first_name',TRUE);
 		$last_name		= $this->input->post('last_name' ,TRUE);
 		$address		= $this->input->post('address'	 ,TRUE);

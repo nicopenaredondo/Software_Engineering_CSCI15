@@ -6,33 +6,70 @@ class Model_back_store_order extends CI_Model
 		parent::__construct();
 	}
 
-	public function list_all_order()
+	
+
+	public function list_all_order($offset,$limit,$slug = NULL)
 	{
-		/*
-		*this is the query that will select order_id,order_reference_id,
-		*first_name,last_name,order_status_description,payment_method and order date
-		*/
-		$this->db->select('o.order_id,o.order_reference_id,
-						   CONCAT(u_p.first_name," ",u_p.last_name),
-						   o_s.order_status_description,
-						   p.payment_method,
-						   o.order_date')
-						->from('orders AS o')
-						->join('user_profiles AS u_p','u_p.user_id = o.customer_id')
-						->join('order_status AS o_s','o_s.order_status_id = o.order_status_id')
-						->join('payment AS p','p.payment_id = o.payment_id');
-
-		//this will query the statement that we've created above
-		$result = $this->db->get();
-
-		//checking if there's a record
-		if($result->num_rows() > 0)
+		if($slug == NULL)
 		{
-		//returns a set of arrays if there are record
-			return $result->result_array();
+			/*
+			*this is the query that will select order_id,order_reference_id,
+			*first_name,last_name,order_status_description,payment_method and order date
+			*/
+			$this->db->limit($offset,$limit);
+			$this->db->select('o.order_id,o.order_reference_id,
+							   u_p.first_name,
+							   u_p.last_name,
+							   o_s.order_status_description,
+							   p.payment_method,
+							   o.order_date')
+							->from('orders AS o')
+							->join('user_profiles AS u_p','u_p.user_id = o.customer_id')
+							->join('order_status AS o_s','o_s.order_status_id = o.order_status_id')
+							->join('payment AS p','p.payment_id = o.payment_id');
+			//this will query the statement that we've created above
+			$result = $this->db->get();
+
+			//checking if there's a record
+			if($result->num_rows() > 0)
+			{
+			//returns a set of arrays if there are record
+				return $result->result_array();
+			}
+			//return a false if there's no record
+				return false;
+		}else
+		{
+
+			/*
+			*this is the query that will select order_id,order_reference_id,
+			*first_name,last_name,order_status_description,payment_method and order date
+			*/
+			$this->db->select('o.order_id,o.order_reference_id,
+							   u_p.first_name,
+							   u_p.last_name,
+							   o_s.order_status_description,
+							   p.payment_method,
+							   o.order_date')
+							->from('orders AS o')
+							->join('user_profiles AS u_p','u_p.user_id = o.customer_id')
+							->join('order_status AS o_s','o_s.order_status_id = o.order_status_id')
+							->join('payment AS p','p.payment_id = o.payment_id')
+							->where('u_p.user_id',$slug);
+			//this will query the statement that we've created above
+			$result = $this->db->get();
+
+			//checking if there's a record
+			if($result->num_rows() > 0)
+			{
+			//returns a set of arrays if there are record
+				return $result->result_array();
+			}
+			//return a false if there's no record
+				return false;
+		
 		}
-		//return a false if there's no record
-			return false;
+		
 	}
 
 	public function view_order($slug = FALSE)
@@ -51,15 +88,16 @@ class Model_back_store_order extends CI_Model
 		*first_name,last_name,order_status_description,payment_method and order date
 		*/
 		$this->db->select('o.order_id,o.order_reference_id,
-						   CONCAT(u_p.first_name," ",u_p.last_name),
+						   u_p.first_name,
+						   u_p.last_name,
 						   o_s.order_status_description,
 						   p.payment_method,
 						   o.order_date,')
 						->from('orders AS o')
 						->join('user_profiles AS u_p','u_p.user_id = o.customer_id')
 						->join('order_status AS o_s','o_s.order_status_id = o.order_status_id')
-						->join('payment AS p','p.payment_id = o.payment_id');
-						->where('o.order_id',$slug);
+						->join('payment AS p','p.payment_id = o.payment_id')
+						->where('o.order_reference_id',$slug);
 
 		//this will query the statement that we've created above
 		$order_info = $this->db->get();
@@ -70,8 +108,8 @@ class Model_back_store_order extends CI_Model
 			//the `view_all_item_order(param)` is an object created in line 81
 			//i've separate the function for readability purposes not sure if this is a good
 			//programming practice.but it will help me in the future
-			$data_array = array('order_info' 			 => $order_info->row_array(),
-													'list_of_products' => $this->view_all_item_order($slug)
+			$data_array = array('order_info'  => $order_info->row_array(),
+					       		  'list_of_products' => $this->view_all_item_order($slug)
 													);
 			return $data_array;
 		}
@@ -87,15 +125,15 @@ class Model_back_store_order extends CI_Model
 		}
 		//this will get the column `product_name`,`product_description`,`product_price`,
 		//`category_name`,`product_quantity`
-		$this->db->select('product.product_name',
-							'product.product_description',
-							'product.product_price',
-							'category.category_name',
-							'order_product.product_quantity')
+		$this->db->select('product.product_name,
+						product.product_price,
+						category.category_name,
+						order_product.product_quantity')
 						 ->from('order_product')
+						 ->join('orders','orders.order_id = order_product.order_id')
 						 ->join('product','product.product_id = order_product.product_id')
 						 ->join('category','category.category_id = product.category_id')
-						 ->where('order_product.order_id',$slug);
+						 ->where('orders.order_reference_id',$slug);
 		//this will just query our statements
 		$result = $this->db->get();
 		//checking there's a row
@@ -106,13 +144,18 @@ class Model_back_store_order extends CI_Model
 			return false;
 	}
 
-	public function modify_order($slug = FALSE)
+	public function modify_order($slug)
 	{
-		if($slug === FALSE)
+		$ref_id       = $slug;
+		$order_status = $this->input->post('order_status');
+		$data_array   = array('order_status_id' => $order_status);
+		$result 	  = $this->db->update('orders',$data_array,array('order_reference_id'=>$ref_id));
+		if($result === TRUE)
 		{
-			return show_404();
+			return true;
 		}
-		//modify the order status or the payment id
+			return false;
+		
 	}
 
 	public function delete_order($slug = FALSE)
@@ -129,5 +172,26 @@ class Model_back_store_order extends CI_Model
 			return true;
 		}
 			return false;
+	}
+
+
+	/**
+	*
+	*
+	* KUNG ANO ANONG FUNCTIONS HAHAHA LOL
+	*
+	*
+	**/
+
+	public function order_count()
+	{
+		return $this->db->count_all('orders');
+	}
+
+	public function get_all_order_status()
+	{
+		$this->db->select('*')->from('order_status');
+		$result = $this->db->get();
+		return $result->result_array();
 	}
 }

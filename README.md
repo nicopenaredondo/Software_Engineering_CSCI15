@@ -38,3 +38,4 @@ Updates
 	- up next
 		- customer,product,categories ( slug )	
 - [3/29/2013] account dashboard almost finished
+- [3/30/2013] working on the order page(admin and customer)

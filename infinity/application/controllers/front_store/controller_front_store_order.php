@@ -1,11 +1,11 @@
 <?php
-class Controller_front_store_main extends CI_Controller
+class Controller_front_store_order extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->is_logged_in();
-		$this->load->model('back_store/model_back_store_customer');
+		$this->is_logged_in();	
+		$this->load->model('back_store/model_back_store_order');
 	}
 
 	private function is_logged_in()
@@ -31,23 +31,20 @@ class Controller_front_store_main extends CI_Controller
 	$this->load->view('template/front_store/footer',$footer_data);
 	}
 
-	public function dashboard()
-	{ 
-		$this->header();
-		$this->load->view('front_store/customer/index');
-		$this->footer();
-	}
-
 	public function my_orders()
 	{
+		$user_id = $this->session->userdata('id');
 		$this->header();
-		$this->load->view('front_store/customer/my_order');
+		$view_data['list_all_order'] = $this->model_back_store_order->list_all_order(NULL,NULL,$user_id);
+		$this->load->view('front_store/customer/my_order',$view_data);
 		$this->footer();
 	}
 
-	public function logout()
+	public function order_info($slug)
 	{
-		$this->session->sess_destroy();
-		redirect(base_url(''));
+		$this->header();
+		$view_data['order_information'] = $this->model_back_store_order->view_order($slug);
+		$this->load->view('front_store/customer/order_info',$view_data);
+		$this->footer();
 	}
 }
