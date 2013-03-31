@@ -24,7 +24,7 @@ class Controller_front_store_registration extends CI_Controller
 	private function footer($attr = NULL)
 	{
 	$footer_data['attr'] = $attr;
-	$this->load->view('template/back_store/footer',$footer_data);
+	$this->load->view('template/front_store/footer',$footer_data);
 	}
 
 	public function register()

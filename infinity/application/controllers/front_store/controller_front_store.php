@@ -10,7 +10,9 @@ class Controller_front_store extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('front_store/demo/index');
+		$this->header();
+		$this->load->view('front_store/index');
+		$this->footer();
 	}
 
 	private function header($attr = NULL)

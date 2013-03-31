@@ -76,7 +76,7 @@ class Controller_back_store_order extends CI_Controller
 			$this->header();
 			
 			$view_data['list_all_order_status'] = $this->model_back_store_order->get_all_order_status(); 
-			$view_data['order_info']	  	    = $this->model_back_store_order->view_order($slug);
+			$view_data['order_information']	  	 = $this->model_back_store_order->view_order($slug);
 			$this->load->view('back_store/view_order',$view_data);
 			$this->footer();
 	}

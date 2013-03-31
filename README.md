@@ -39,3 +39,5 @@ Updates
 		- customer,product,categories ( slug )	
 - [3/29/2013] account dashboard almost finished
 - [3/30/2013] working on the order page(admin and customer)
+- [3/31/2013] working on the site main page including the login and registration
+ 

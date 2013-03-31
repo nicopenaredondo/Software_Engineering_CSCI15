@@ -1,4 +1,4 @@
-<div class="row" style="height:200px;"></div>
+<div class="row" style="height:100px;"></div>
 
 <footer style="background: #65605c url('<?php echo base_url('assets/background/footer.png');?>') repeat;border-top:solid #87EA00;">
   <div class="container">
