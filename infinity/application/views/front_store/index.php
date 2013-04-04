@@ -42,14 +42,15 @@
 
   <div class="row" style="margin-top:10px;">
     <div class="span12">
-      <ul class="thumbnails">
+      <ul class="thumbnails" style="text-align:center;">
        <li class="span4">
           <div class="thumbnail">
            <img src="<?php echo base_url('assets/images/no_picture.png');?>">
            <div class="caption">
               <h3>Thumbnail label</h3>
+              <span class="label label-info">P200</span><br>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
             </div>
           </div>
         </li>       
@@ -58,8 +59,9 @@
            <img src="<?php echo base_url('assets/images/no_picture.png');?>">
            <div class="caption">
               <h3>Thumbnail label</h3>
+              <span class="label label-info">P200</span><br>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
             </div>
           </div>
         </li>       
@@ -68,8 +70,9 @@
            <img src="<?php echo base_url('assets/images/no_picture.png');?>">
            <div class="caption">
               <h3>Thumbnail label</h3>
+              <span class="label label-info">P200</span><br>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
             </div>
           </div>
         </li>       

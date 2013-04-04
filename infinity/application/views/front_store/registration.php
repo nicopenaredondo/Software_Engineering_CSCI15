@@ -17,7 +17,7 @@
       </div><!--span6-->
       <div class="span6">
         <div class="formy well">
-          <h4 class="title">Login to Your Account</h4>
+          <h4 class="title">Registration</h4>
           <div class="form">
             <!-- Register form (not working)-->
               <form class = "form-horizontal" action="<?php echo base_url('auth/register/new');?>" method = "POST">      
@@ -51,8 +51,8 @@
                <!-- Buttons -->
                 <div class="form-actions">
                  <!-- Buttons -->
-                  <button type="submit" class="btn">Login</button>
-                  <button type="reset" class="btn">Reset</button>
+                  <button type="submit" class="btn">Register</button>
+                  
                 </div>
               </form>
                 <hr>

@@ -36,14 +36,14 @@ class Model_back_store_blog extends CI_Model
 		}
 			return show_404();
 		}else{
-		$this->db->select('*')->from('blog')
-							->where('blog_slug',$slug);
-		$result = $this->db->get();
-		if($result->num_rows() > 0)
-		{
-			return $result->row_array();
-		}
-			return show_404();
+			$this->db->select('*')->from('blog')
+								->where('blog_slug',$slug);
+			$result = $this->db->get();
+			if($result->num_rows() > 0)
+			{
+				return $result->row_array();
+			}
+				return show_404();
 		}
 	}
 
@@ -100,7 +100,7 @@ class Model_back_store_blog extends CI_Model
 			return show_404();
 		}
 
-		$result = $this->db->delete('blog',array('blog_id' => $slug));
+		$result = $this->db->delete('blog',array('blog_slug' => $slug));
 		if($result === TRUE)
 		{
 			return true;
@@ -124,7 +124,7 @@ class Model_back_store_blog extends CI_Model
 
 	public function check_slug($slug)
 	{
-		$this->db->select('blog_id')
+		$this->db->select('blog_slug')
 				 ->from('blog')
 				 ->where('blog_slug',$slug);
 		$result = $this->db->get();
@@ -150,5 +150,5 @@ class Model_back_store_blog extends CI_Model
 		}
 			//but if not return true;
 			return true;
-	}
+	} 	
 }

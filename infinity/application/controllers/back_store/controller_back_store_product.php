@@ -89,6 +89,7 @@ class Controller_back_store_product extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
 		$this->form_validation->set_rules('product_name','Product Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('product_description','Product Description','required|trim|xss_clean');
+		$this->form_validation->set_rules('product_slug','Product Slug','required|trim|xss_clean|callback_slug_validation');
 		$this->form_validation->set_rules('product_price','Product Price','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('product_stock_quantity','Product Quantity','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('category_id','Product Category','required|trim|xss_clean|integer');
@@ -131,6 +132,7 @@ class Controller_back_store_product extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
 		$this->form_validation->set_rules('product_name','Product Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('product_description','Product Description','required|trim|xss_clean');
+		$this->form_validation->set_rules('product_slug','Product Slug','required|trim|xss_clean|callback_modified_slug_validation');
 		$this->form_validation->set_rules('product_price','Product Price','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('product_stock_quantity','Product Quantity','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('category_id','Product Category','required|trim|xss_clean|integer');
@@ -150,12 +152,12 @@ class Controller_back_store_product extends CI_Controller
 				//if the user is registered,it will redirect to customer page
 				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully modified this product</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/product/info/'.$this->input->post('product_id')));
+				redirect(base_url('admin/product/info/'.url_title($this->input->post('product_slug'),'dash',TRUE)));
 			}else{
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this product</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/product/info'.$this->input->post('product_id')));
+				redirect(base_url('admin/product/info'.url_title($this->input->post('product_slug'),'dash',TRUE)));
 			}
 		}else
 		{
@@ -204,6 +206,34 @@ class Controller_back_store_product extends CI_Controller
 		$view_data['list_all_category'] = $this->model_back_store_product->list_all_category();
 		$this->load->view('back_store/add_new_product_page',$view_data);
 		$this->footer();
+	}
+
+		public function slug_validation($slug)
+	{
+		$result = $this->model_back_store_product->check_slug($slug);
+		if($result === TRUE)
+		{
+			return true;
+		}
+			$this->form_validation->set_message('slug_validation', 'The slug is already taken.Please choose another one');
+			return false;
+	}
+
+	public function modified_slug_validation($slug)
+	{
+		$result = $this->model_back_store_product->modified_check_slug($slug);
+		if($result === TRUE)
+		{
+			return true;
+		}
+		//if no modification in the slug has been made. this will be the logic
+		if($slug == $this->input->post('hidden_slug'))
+		{
+			return true;
+		}else{
+			$this->form_validation->set_message('modified_slug_validation', 'The slug is already taken.Please choose another one');
+			return false;
+		}
 	}
 
 }

@@ -38,11 +38,19 @@
 |
 */
 
-//front store routes
-$route['default_controller'] 			= "front_store/controller_front_store/index";
+
+$route['default_controller'] 			= "front_store/controller_front_store_website/index";
+
+//website routes
+$route['dashboard/logout']	 			= "front_store/controller_front_store_website/logout";
+
+//cart routes
+$route['cart']							= "front_store/controller_front_store_cart/view_cart";
+$route['cart/add-to-cart']				= "front_store/controller_front_store_cart/add_cart";
 
 //dashboard routes
-$route['dashboard']						= "front_store/controller_front_store_main/dashboard";
+$route['dashboard']						= "front_store/controller_front_store_dashboard/dashboard";
+
 //my-account routes
 $route['my-account']					= "front_store/controller_front_store_my_account/my_account_details";
 $route['my-account/profile/update']		= "front_store/controller_front_store_my_account/modify_user_profile";
@@ -52,12 +60,10 @@ $route['my-account/account/update']		= "front_store/controller_front_store_my_ac
 $route['my-order']						= "front_store/controller_front_store_order/my_orders";
 $route['my-order/info/(:any)']			= "front_store/controller_front_store_order/order_info/$1";
 
-
-$route['dashboard/logout']	 			= "front_store/controller_front_store_main/logout";
-
 //back store
 $route['admin']  						= 'back_store/controller_back_store_main/index';
-
+$route['admin/logout']					= 'back_store/controller_back_store_main/logout';
+//order routes
 $route['admin/order']					= 'back_store/controller_back_store_order/index';
 $route['admin/order/(:num)']			= 'back_store/controller_back_store_order/index/$1';
 $route['admin/order/info/(:any)']		= 'back_store/controller_back_store_order/order_info/$1';
@@ -66,6 +72,7 @@ $route['admin/order/change-status']		= 'back_store/controller_back_store_order/m
 //$route['admin/order/modify']			= 'back_store/controller_back_store_order/modify_order/$1';
 $route['admin/order/delete/(:any)']		= 'back_store/controller_back_store_order/delete_order/$1';
 
+//customer routes
 $route['admin/customer'] 				= 'back_store/controller_back_store_customer/index';
 $route['admin/customer/(:num)'] 		= 'back_store/controller_back_store_customer/index/$1';
 $route['admin/customer/info/(:num)']	= 'back_store/controller_back_store_customer/customer_info/$1';
@@ -74,34 +81,35 @@ $route['admin/customer/delete/(:any)']	= 'back_store/controller_back_store_custo
 $route['admin/customer/user-profile/modify'] = 'back_store/controller_back_store_customer/modify_customer_profile';
 $route['admin/customer/user-account/modify'] = 'back_store/controller_back_store_customer/modify_customer_account';
 
+//$route['admin/report']					= 'back_store/controller_back_store_report/index';
 
-$route['admin/report']					= 'back_store/controller_back_store_report/index';
-
+//category routes
 $route['admin/category']				= 'back_store/controller_back_store_category/index';
 $route['admin/category/(:num)']			= 'back_store/controller_back_store_category/index/$1';
-$route['admin/category/info/(:num)']	= 'back_store/controller_back_store_category/category_info/$1';
+$route['admin/category/info/(:any)']	= 'back_store/controller_back_store_category/category_info/$1';
 $route['admin/category/add-new-category']= 'back_store/controller_back_store_category/add_new_category_page';
 $route['admin/category/new']			= 'back_store/controller_back_store_category/add_category';
 $route['admin/category/modify']			= 'back_store/controller_back_store_category/modify_category';
-$route['admin/category/delete/(:num)']	= 'back_store/controller_back_store_category/delete_category/$1';
+$route['admin/category/delete/(:any)']	= 'back_store/controller_back_store_category/delete_category/$1';
 
+//product routes
 $route['admin/product']					= 'back_store/controller_back_store_product/index';
 $route['admin/product/(:num)']			= 'back_store/controller_back_store_product/index/$1';
-$route['admin/product/info/(:num)']		= 'back_store/controller_back_store_product/product_info/$1';
+$route['admin/product/info/(:any)']		= 'back_store/controller_back_store_product/product_info/$1';
 $route['admin/product/add-new-product']	= 'back_store/controller_back_store_product/add_new_product_page';
 $route['admin/product/new']				= 'back_store/controller_back_store_product/add_product';
 $route['admin/product/modify']			= 'back_store/controller_back_store_product/modify_product';
-$route['admin/product/delete/(:num)']	= 'back_store/controller_back_store_product/delete_product/$1';
+$route['admin/product/delete/(:any)']	= 'back_store/controller_back_store_product/delete_product/$1';
 
+
+//blog routes
 $route['admin/blog']					= 'back_store/controller_back_store_blog/index';
 $route['admin/blog/(:num)']				= 'back_store/controller_back_store_blog/index/$1';
 $route['admin/blog/info/(:any)']		= 'back_store/controller_back_store_blog/blog_info/$1';
 $route['admin/blog/add-new-blog']		= 'back_store/controller_back_store_blog/add_new_blog_page';
 $route['admin/blog/new']				= 'back_store/controller_back_store_blog/add_blog';
 $route['admin/blog/modify']				= 'back_store/controller_back_store_blog/modify_blog';
-$route['admin/blog/delete/(:num)']		= 'back_store/controller_back_store_blog/delete_blog/$1';
-
-$route['admin/logout']					= 'back_store/controller_back_store_main/logout';
+$route['admin/blog/delete/(:any)']		= 'back_store/controller_back_store_blog/delete_blog/$1';
 
 //login routes
 $route['auth'] 		 	 				= 'front_store/controller_front_store_login/index';

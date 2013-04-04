@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
 <head>
-	<title>Administrator Access</title>
+	<title><?php echo $title;?></title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css');?>">
-  	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/todc-bootstrap.css');?>">
-  	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/widgets.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/todc-bootstrap.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/widgets.css');?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elusive-webfont.css');?>">
   	<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/widget.js');?>"></script>
 </head>

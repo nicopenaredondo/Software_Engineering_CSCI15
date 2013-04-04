@@ -17,7 +17,7 @@ class Controller_front_store_registration extends CI_Controller
 
 	private function header($attr = NULL)
 	{
-	$header_data['attr'] = $attr;
+	$header_data['title'] = 'Registration';
 	$this->load->view('template/front_store/header',$header_data);
 	}
 

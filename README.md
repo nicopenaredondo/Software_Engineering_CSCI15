@@ -40,4 +40,5 @@ Updates
 - [3/29/2013] account dashboard almost finished
 - [3/30/2013] working on the order page(admin and customer)
 - [3/31/2013] working on the site main page including the login and registration
+- [4/1-4/2013] hindi nakapag commit epic siguro madami na din ako nagawa hahahah nakalimutan ko ~_~ 
  

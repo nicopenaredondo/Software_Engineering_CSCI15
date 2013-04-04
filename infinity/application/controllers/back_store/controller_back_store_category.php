@@ -87,7 +87,7 @@ class Controller_back_store_category extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
 		$this->form_validation->set_rules('category_name','Category Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('category_description','Category Description','required|trim|xss_clean');
-		$this->form_validation->set_rules('category_slug','Category Slug','required|trim|xss_clean');
+		$this->form_validation->set_rules('category_slug','Category Slug','required|trim|xss_clean||callback_modified_slug_validation');
 		
 		// if the form passed the rules
 		if($this->form_validation->run() ===  TRUE)
@@ -124,7 +124,7 @@ class Controller_back_store_category extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
 		$this->form_validation->set_rules('category_name','Category Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('category_description','Category Description','required|trim|xss_clean');
-		$this->form_validation->set_rules('category_slug','Category Slug','required|trim|xss_clean');
+		$this->form_validation->set_rules('category_slug','Category Slug','required|trim|xss_clean|callback_modified_slug_validation');
 		
 		// if the form passed the rules
 		if($this->form_validation->run() ===  TRUE)
@@ -142,12 +142,12 @@ class Controller_back_store_category extends CI_Controller
 				//if the user is registered,it will redirect to customer page
 				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully modify this category</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/category/info/'.$this->input->post('category_id')));
+				redirect(base_url('admin/category/info/'.url_title($this->input->post('category_slug'),'dash',TRUE)));
 			}else{
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modify this category</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/category/info/'.$this->input->post('category_id')));
+				redirect(base_url('admin/category/info/'.url_title($this->input->post('category_slug'),'dash',TRUE)));
 			}
 		}else
 		{
@@ -182,11 +182,47 @@ class Controller_back_store_category extends CI_Controller
 			}
 	}
 
+	/**
+	*
+	*
+	*KUNG ANO ANONG FUNCTIONS! lol
+	*
+	*
+	**/
+
 	public function add_new_category_page()
 	{
 		$this->header();
 		$this->load->view('back_store/add_new_category_page');
 		$this->footer();
+	}
+
+	public function slug_validation($slug)
+	{
+		$result = $this->model_back_store_category->check_slug($slug);
+		if($result === TRUE)
+		{
+			return true;
+		}
+			$this->form_validation->set_message('slug_validation', 'The slug is already taken.Please choose another one');
+			return false;
+	}
+
+	public function modified_slug_validation($slug)
+	{
+		$result = $this->model_back_store_category->modified_check_slug($slug);
+		if($result === TRUE)
+		{
+			return true;
+		}
+		//if no modification in the slug has been made. this will be the logic
+		if($slug == $this->input->post('hidden_slug'))
+		{
+			return true;
+		}else{
+			$this->form_validation->set_message('modified_slug_validation', 'The slug is already taken.Please choose another one');
+			return false;
+		}
 	}
 
 

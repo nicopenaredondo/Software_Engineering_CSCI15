@@ -36,7 +36,7 @@
 				<th>Category ID</th>
 				<th>Category Name</th>
 				<th>Category Description</th>
-				<th>Category Slug</th>
+				<th>URL</th>
 				<th>Actions</th>
 			</thead>
 			<?php foreach($list_all_category as $category):?>
@@ -44,11 +44,11 @@
 					<td><?php echo $category['category_id'];?></td>
 					<td><?php echo $category['category_name'];?></td>
 					<td><?php echo word_limiter($category['category_description'],10);?></td>
-					<td><?php echo $category['category_slug'];?></td>
+					<td><?php echo '/'.$category['category_slug'];?></td>
 					<td width="10%">
 						<div class="btn-group">
-	            <a href="<?php echo base_url('admin/category/info/'.$category['category_id']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
-	            <a href="<?php echo base_url('admin/category/delete/'.$category['category_id']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
+	            <a href="<?php echo base_url('admin/category/info/'.$category['category_slug']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
+	            <a href="<?php echo base_url('admin/category/delete/'.$category['category_slug']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
 	          </div><!--btn-group-->
 					</td>
 				</tbody>

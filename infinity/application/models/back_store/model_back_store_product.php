@@ -10,7 +10,11 @@ class Model_back_store_product extends CI_Model
 	{
 		$this->db->limit($offset,$limit);
 
-		$this->db->select('*')
+		$this->db->select('product.product_id,
+						product.product_name,
+						product.product_slug,
+						product.product_price,
+						category.category_name')
 				->from('product')
 				->join('category','category.category_id = product.category_id','left');
 		$result = $this->db->get();
@@ -39,17 +43,26 @@ class Model_back_store_product extends CI_Model
 			return show_404();
 		}
 
-		$this->db->select('*')
-						 ->from('product')
-						 ->join('category','category.category_id = product.category_id','left')
-						 ->where('product.product_id',$slug);
-
+		if(is_numeric($slug))
+		{
+		$this->db->select('*')->from('product')
+							->where('product_id',$slug);
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
 			return $result->row_array();
 		}
-			return false;
+			return show_404();
+		}else{
+			$this->db->select('*')->from('product')
+								->where('product_slug',$slug);
+			$result = $this->db->get();
+			if($result->num_rows() > 0)
+			{
+				return $result->row_array();
+			}
+				return show_404();
+		}
 	}
 
 	public function add_product()
@@ -57,6 +70,7 @@ class Model_back_store_product extends CI_Model
 		$category_id  	     	= $this->input->post('category_id',TRUE);
 		$product_name 		 	= $this->input->post('product_name',TRUE);
 		$product_description 	= $this->input->post('product_description',TRUE);
+		$product_slug		 	= url_title($this->input->post('product_slug'),'dash',TRUE);
 		$product_price		 	= $this->input->post('product_price',TRUE);
 		$product_stock_quantity = $this->input->post('product_stock_quantity',TRUE);
 		
@@ -64,6 +78,7 @@ class Model_back_store_product extends CI_Model
 			'category_id' 			=>	$category_id,
 			'product_name'			=>	$product_name,
 			'product_description'	=>	$product_description,
+			'product_slug'			=> 	$product_slug,
 			'product_price'			=>	$product_price,
 			'product_stock_quantity'=>	$product_stock_quantity
 			);
@@ -83,6 +98,7 @@ class Model_back_store_product extends CI_Model
 		$category_id  	     	= $this->input->post('category_id',TRUE);
 		$product_name 		 	= $this->input->post('product_name',TRUE);
 		$product_description 	= $this->input->post('product_description',TRUE);
+		$product_slug		 	= url_title($this->input->post('product_slug'),'dash',TRUE);
 		$product_price		 	= $this->input->post('product_price',TRUE);
 		$product_stock_quantity = $this->input->post('product_stock_quantity',TRUE);
 		
@@ -90,6 +106,7 @@ class Model_back_store_product extends CI_Model
 			'category_id' 			=>	$category_id,
 			'product_name'			=>	$product_name,
 			'product_description'	=>	$product_description,
+			'product_slug'			=>	$product_slug,
 			'product_price'			=>	$product_price,
 			'product_stock_quantity'=>	$product_stock_quantity
 			);
@@ -110,7 +127,7 @@ class Model_back_store_product extends CI_Model
 			return show_404();
 		}
 
-		$result = $this->db->delete('product',array('product_id' => $slug));
+		$result = $this->db->delete('product',array('product_slug' => $slug));
 		if($result === TRUE)
 		{
 			return true;
@@ -129,5 +146,35 @@ class Model_back_store_product extends CI_Model
 	public function product_count()
 	{
 		return $this->db->count_all('product');
+	}
+
+	public function check_slug($slug)
+	{
+		$this->db->select('product_slug')
+				 ->from('product')
+				 ->where('product_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() > 0)
+		{
+			//if theres an already a slug return false
+			return false;
+		}
+			//but if not return true;
+			return true;
+	}
+
+	public function modified_check_slug($slug)
+	{
+		$this->db->select('product_id')
+				 ->from('product')
+				 ->where('product_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() >= 1)
+		{
+			//if theres an already a slug return false
+			return false;
+		}
+			//but if not return true;
+			return true;
 	}
 }

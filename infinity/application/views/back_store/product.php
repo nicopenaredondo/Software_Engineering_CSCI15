@@ -33,7 +33,7 @@
       <thead>
         <th width="10%">Product ID</th>
         <th width="20%">Product Name</th>
-        <th width="20%">Product Description</th>
+        <th width="20%">Product URL</th>
         <th width="20%">Product Price</th>
         <th width="20%">Category</th>
         <th width="20%">Actions</th>
@@ -42,13 +42,13 @@
       <tbody>
         <td><?php echo $product['product_id'];?></td>
         <td><?php echo $product['product_name'];?></td>
-        <td><?php echo word_limiter($product['product_description'],10);?></td>
+        <td><?php echo $product['product_slug'];?></td>
         <td><?php echo '₱'.$product['product_price'];?></td>
         <td><?php echo $product['category_name'];?></td>
         <td>
           <div class="btn-group">
-            <a href="<?php echo base_url('admin/product/info/'.$product['product_id']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
-            <a href="<?php echo base_url('admin/product/delete/'.$product['product_id']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
+            <a href="<?php echo base_url('admin/product/info/'.$product['product_slug']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
+            <a href="<?php echo base_url('admin/product/delete/'.$product['product_slug']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
           </div><!--btn-group-->
         </td>
       </tbody>

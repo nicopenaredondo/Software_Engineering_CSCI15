@@ -141,12 +141,12 @@ class Controller_back_store_blog extends CI_Controller
 				//if the user is registered,it will redirect to customer page
 				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully modified a blog</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/blog/info/'.$this->input->post('blog_id')));
+				redirect(base_url('admin/blog/info/'.url_title($this->input->post('blog_slug'),'dash',TRUE)));
 			}else{
 				//if not. it will throw an error
 				$message= "<div class='alert alert-error'><i class='icon-exclamation-sign'></i>Failed to modified a blog</div>";
 				$this->session->set_flashdata('message', $message);
-				redirect(base_url('admin/blog/info/'.$this->input->post('blog_id')));
+				redirect(base_url('admin/blog/info/'.url_title($this->input->post('blog_slug'),'dash',TRUE)));
 			}
 		}else
 		{

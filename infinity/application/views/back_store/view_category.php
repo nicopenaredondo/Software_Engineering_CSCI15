@@ -56,6 +56,7 @@
 				    </label>
 				  	<div class="controls">
 				  		<input name="category_slug" type="text" placeholder="Category Slug" class="span6" value="<?php echo $category_information['category_slug'];?>">
+  						<input name="hidden_slug" type="hidden" placeholder="Category Slug" class="span6" value="<?php echo $category_information['category_slug'];?>">
   					<p class="help-block"><span class="label label-info">Example : http://www.example.com/<i><u>category</u></i></span></p>
 				    </div><!--control-label-->
 				  </div><!--control-group-->

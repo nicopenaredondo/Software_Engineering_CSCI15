@@ -25,16 +25,26 @@ class Model_back_store_category extends CI_Model
 			return show_404();
 		}
 
-		$this->db->select('*')
-				 ->from('category')
-				 ->where('category.category_id',$slug);
-
+		if(is_numeric($slug))
+		{
+		$this->db->select('*')->from('category')
+							->where('category_id',$slug);
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
 			return $result->row_array();
 		}
-			return false;
+			return show_404();
+		}else{
+			$this->db->select('*')->from('category')
+								->where('category_slug',$slug);
+			$result = $this->db->get();
+			if($result->num_rows() > 0)
+			{
+				return $result->row_array();
+			}
+				return show_404();
+		}
 	}
 
 	public function add_category()
@@ -86,7 +96,7 @@ class Model_back_store_category extends CI_Model
 			return show_404();
 		}
 
-		$result = $this->db->delete('category',array('category_id' => $slug));
+		$result = $this->db->delete('category',array('category_slug' => $slug));
 		if($result === TRUE)
 		{
 			return true;
@@ -97,5 +107,35 @@ class Model_back_store_category extends CI_Model
 	public function category_count()
 	{
 		return $this->db->count_all('category');
+	}
+
+	public function check_slug($slug)
+	{
+		$this->db->select('category_slug')
+				 ->from('category')
+				 ->where('category_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() > 0)
+		{
+			//if theres an already a slug return false
+			return false;
+		}
+			//but if not return true;
+			return true;
+	}
+
+	public function modified_check_slug($slug)
+	{
+		$this->db->select('category_slug')
+				 ->from('category')
+				 ->where('category_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() >= 1)
+		{
+			//if theres an already a slug return false
+			return false;
+		}
+			//but if not return true;
+			return true;
 	}
 }

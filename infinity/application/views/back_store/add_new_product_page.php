@@ -48,6 +48,19 @@
 				    </div><!--control-label-->
 				  </div><!--control-group-->
 
+				<!--product-slug-->
+					<?php echo form_error('product_slug');?>
+				  <div class="control-group">
+				    <label class="control-label">
+				    	Product Slug
+				    	<span class="label label-important">Required</span>
+				    </label>
+				  	<div class="controls">
+				  		<input name="product_slug" type="text" placeholder="Product Slug" class="span6" value="">
+  					<p class="help-block"><span class="label label-info">Example : http://www.example.com/<i><u>product-title-here</u></i></span></p>
+				    </div><!--control-label-->
+				  </div><!--control-group-->
+
 				   <!--product-category-->
 					<?php echo form_error('category_id');?>
 				  <div class="control-group">

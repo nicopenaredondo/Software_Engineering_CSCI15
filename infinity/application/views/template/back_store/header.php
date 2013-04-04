@@ -13,7 +13,7 @@
 <body>
 	<div class="navbar navbar-googlenav">
   	<div class="navbar-inner">
-   	  <a class="brand" href="#">Administrator</a>
+   	  <a class="brand" href="<?php echo base_url('admin');?>">Administrator</a>
         <ul class="nav">
           <li>
             <a href="<?php echo base_url('admin');?>"> Home</a>

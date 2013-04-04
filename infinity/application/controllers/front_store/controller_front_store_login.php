@@ -18,7 +18,7 @@ class Controller_front_store_login extends CI_Controller
 
 	private function header($attr = NULL)
 	{
-	$header_data['attr'] = $attr;
+	$header_data['title'] = 'Login';
 	$this->load->view('template/front_store/header',$header_data);
 	}
 

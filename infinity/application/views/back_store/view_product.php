@@ -51,6 +51,20 @@
 				    </div><!--control-label-->
 				  </div><!--control-group-->
 
+				    <!--blog-slug-->
+					<?php echo form_error('product_slug');?>
+				  <div class="control-group">
+				    <label class="control-label">
+				    	Product Slug
+				    	<span class="label label-important">Required</span>
+				    </label>
+				  	<div class="controls">
+				  		<input name="product_slug" type="text" placeholder="product Slug" class="span6" value="<?php echo $product_information['product_slug'];?>">
+  						<input name="hidden_slug" type="hidden" placeholder="product Slug" class="span6" value="<?php echo $product_information['product_slug'];?>">
+  					<p class="help-block"><span class="label label-info">Example : http://www.example.com/<i><u>product_title_here</u></i></span></p>
+				    </div><!--control-label-->
+				  </div><!--control-group-->
+
 				   <!--product-category-->
 					<?php echo form_error('category_id');?>
 				  <div class="control-group">
