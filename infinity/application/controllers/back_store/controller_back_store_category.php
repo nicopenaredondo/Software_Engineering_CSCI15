@@ -6,6 +6,7 @@ class Controller_back_store_category extends CI_Controller
 		parent::__construct();
 		$this->is_logged_in();
 		$this->load->model('back_store/model_back_store_category');
+		$this->load->model('back_store/model_back_store_product');
 	}
 
 	private function is_logged_in()
@@ -77,6 +78,7 @@ class Controller_back_store_category extends CI_Controller
 		}
 
 			$this->header();
+			$view_data['list_of_products']		= $this->model_back_store_product->list_all_products_by_category($slug);
 			$view_data['category_information']	= $this->model_back_store_category->view_category($slug);
 			$this->load->view('back_store/view_category',$view_data);
 			$this->footer();
@@ -176,7 +178,7 @@ class Controller_back_store_category extends CI_Controller
 				redirect(base_url('admin/category'));
 			}else
 			{
-				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-danger"><i class="icon-remove"></i>Failed to delete a category</div>';
+				$msg = '<div style="margin-top:5px;margin-bottom:5px;"class="alert alert-danger"><i class="icon-remove"></i>Failed to delete a category. Maybe you have a product under it ?</div>';
 				$this->session->set_flashdata('message',$msg);
 				redirect(base_url('admin/category'));
 			}

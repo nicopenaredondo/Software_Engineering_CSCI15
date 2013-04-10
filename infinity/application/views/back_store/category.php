@@ -47,9 +47,9 @@
 					<td><?php echo '/'.$category['category_slug'];?></td>
 					<td width="10%">
 						<div class="btn-group">
-	            <a href="<?php echo base_url('admin/category/info/'.$category['category_slug']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
-	            <a href="<?php echo base_url('admin/category/delete/'.$category['category_slug']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
-	          </div><!--btn-group-->
+				            <a href="<?php echo base_url('admin/category/info/'.$category['category_slug']);?>" class="btn btn-primary "><i class="icon-edit"></i>Modify</a>
+				            <a href="<?php echo base_url('admin/category/delete/'.$category['category_slug']);?>" class="btn btn-danger"><i class="icon-remove"></i>Delete</a>
+				          </div><!--btn-group-->
 					</td>
 				</tbody>
 			<?php endforeach;?>

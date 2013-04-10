@@ -63,7 +63,7 @@ class Controller_back_store_product extends CI_Controller
 			//$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0 ;
 			//end pagination config
 			$this->header();
-			$view_data['list_all_products'] 		= $this->model_back_store_product->list_all_products($config['per_page'],$id);
+			$view_data['list_all_products'] 		= $this->model_back_store_product->list_all_products($id,$config['per_page']);
 			$view_data['paginate_links']			= $this->pagination->create_links();
 			$this->load->view('back_store/product',$view_data);
 			$this->footer();

@@ -41,4 +41,5 @@ Updates
 - [3/30/2013] working on the order page(admin and customer)
 - [3/31/2013] working on the site main page including the login and registration
 - [4/1-4/2013] hindi nakapag commit epic siguro madami na din ako nagawa hahahah nakalimutan ko ~_~ 
+- [4/11/2013] lol di na talaga ako nakakapag commit anyway naintegrate ko na yung disquss
  

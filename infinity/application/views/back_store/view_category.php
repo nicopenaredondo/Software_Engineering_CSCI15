@@ -11,6 +11,7 @@
 		        </div>
 		        <div class="modal-body" style="height:200px;">
 		          <pre style="background-color:black;color:green;"><?php print_r($category_information);?></pre>
+		          <pre style="background-color:black;color:green;"><?php print_r($list_of_products);?></pre>
 		        </div>
 		      </div><!--modal hide fade-->
 		      <!--debug mode-->

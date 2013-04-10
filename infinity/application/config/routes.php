@@ -41,13 +41,18 @@
 
 $route['default_controller'] 			= "front_store/controller_front_store_website/index";
 
+
+
 //website routes
+$route['category']						= "front_store/controller_front_store_website/product_list";
+$route['category/(:any)']				= "front_store/controller_front_store_website/product_list/$1";
+$route['category/(:any)/(:any)']		= "front_store/controller_front_store_website/product_list/$1/$2";
 $route['dashboard/logout']	 			= "front_store/controller_front_store_website/logout";
 
 //cart routes
 $route['cart']							= "front_store/controller_front_store_cart/view_cart";
-$route['cart/add-to-cart']				= "front_store/controller_front_store_cart/add_cart";
-
+$route['cart/add-to-cart/(:any)']		= "front_store/controller_front_store_cart/add_cart/$1";
+$route['cart/reset-cart']				= "front_store/controller_front_store_cart/reset_cart";
 //dashboard routes
 $route['dashboard']						= "front_store/controller_front_store_dashboard/dashboard";
 
@@ -119,7 +124,7 @@ $route['auth/login']    				= 'front_store/controller_front_store_login/login';
 $route['auth/register'] 				= 'front_store/controller_front_store_registration/index'; 
 $route['auth/register/new'] 			= 'front_store/controller_front_store_registration/register'; 
 //etc
-$route['404_override'] 			= '';
+$route['404_override'] 					= 'error_404/index';
 
 
 

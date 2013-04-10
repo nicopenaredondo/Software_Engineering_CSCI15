@@ -1,29 +1,4 @@
 <div class="container">
-	<div class="row" style="margin-left:5px;margin-top:20px;">
-		<img class="pull-left" src="<?php echo base_url('assets/images/lol.png');?>" style="width:200px;height:80px;">
-		<div class="btn-group pull-right" style="margin-top:25px;">
-			
-			<a class="btn" href="#">
-				<i class="icon-globe"></i><span class="hidden-phone hidden-tablet"> Notifications</span> <span class="label label-important hidden-phone">2</span>
-			</a>
-
-			<a class="btn" href="#">
-				<i class="icon-shopping-cart"></i><span class="hidden-phone hidden-tablet"> Cart</span> <span class="label label-important hidden-phone">2</span>
-			</a>
-
-			<!-- start: User Dropdown -->
-			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="icon-user"></i><span class="hidden-phone hidden-tablet"> Yo' Mama</span>
-				<span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="#">Profile</a></li>
-				<li class="divider"></li>
-				<li><a href="<?php echo base_url('dashboard/logout');?>">Logout</a></li>
-			</ul>
-			<!-- end: User Dropdown -->
-		</div>
-	</div><!--row-->
 	<div class="row" style="margin-top:50px;">
 		<div class="span3" style="margin-top:10px;">
 			<h4>My Account</h4>

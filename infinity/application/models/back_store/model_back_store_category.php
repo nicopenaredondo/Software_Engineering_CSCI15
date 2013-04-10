@@ -95,10 +95,27 @@ class Model_back_store_category extends CI_Model
 		{
 			return show_404();
 		}
-
-		$result = $this->db->delete('category',array('category_slug' => $slug));
-		if($result === TRUE)
+		//if the category doesn't have any products
+		if($this->check_product_count_in_category($slug) === FALSE)
 		{
+			$result = $this->db->delete('category',array('category_slug' => $slug));
+			return true;
+		}else // if the category have at least one products
+		{
+			return false;
+		}
+	}
+
+	public function check_product_count_in_category($slug)
+	{
+		$this->db->select('product_id')
+				 ->from('product')
+				 ->join('category','category.category_id = product.category_id')
+				 ->where('category.category_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() > 0 )
+		{
+			//the category still have a product on it so we will return true
 			return true;
 		}
 			return false;

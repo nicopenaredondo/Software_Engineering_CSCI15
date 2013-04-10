@@ -1,6 +1,20 @@
-
-
+  <!-- Modal -->
+          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Debugger</h3>
+            </div>
+            <div class="modal-body" style="height:200px;">
+              <pre style="background-color:black;color:green;"><?php print_r($list_products);?></pre>
+            </div>
+          </div><!--modal hide fade-->
+          <!--debug mode-->
 <div class="container">
+  <div class="row">
+    <div class="span12">
+     
+    </div><!-- span12 -->
+  </div><!-- row -->
   <div class="row">
     <div class="span12">
      <ul class="thumbnails">
@@ -39,46 +53,6 @@
   </div><!--row-->
 
 
-
-  <div class="row" style="margin-top:10px;">
-    <div class="span12">
-      <ul class="thumbnails" style="text-align:center;">
-       <li class="span4">
-          <div class="thumbnail">
-           <img src="<?php echo base_url('assets/images/no_picture.png');?>">
-           <div class="caption">
-              <h3>Thumbnail label</h3>
-              <span class="label label-info">P200</span><br>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            </div>
-          </div>
-        </li>       
-         <li class="span4">
-          <div class="thumbnail">
-           <img src="<?php echo base_url('assets/images/no_picture.png');?>">
-           <div class="caption">
-              <h3>Thumbnail label</h3>
-              <span class="label label-info">P200</span><br>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            </div>
-          </div>
-        </li>       
-         <li class="span4">
-          <div class="thumbnail">
-           <img src="<?php echo base_url('assets/images/no_picture.png');?>">
-           <div class="caption">
-              <h3>Thumbnail label</h3>
-              <span class="label label-info">P200</span><br>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            </div>
-          </div>
-        </li>       
-      </ul>
-    </div><!--span12-->
-  </div><!--row-->
 </div><!--container-->
 
 <div class="items">
@@ -187,99 +161,38 @@
   <div class="container">
     <div class="row">
       <div class="span12">
-        <h3 class="title">Recent Items</h3>
+        <h3 class="title">Latest Items</h3>
       </div>
-      <!-- Item #1 -->
+      <!-- Item  -->
+      <div id="recent_items_slide">
+      <?php foreach($list_products as $products):?>
       <div class="span3">
-        <div class="item">
+        <div class="item" style="height:350px;">
           <!-- Item image -->
           <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/mcbeat/images/2.png');?>" alt=""></a>
-          </div>
+            <a href="single-item.html"><img src="<?php echo base_url('assets/images/no_picture.png');?>" alt=""></a>
+          </div><!-- item-image -->
           <!-- Item details -->
           <div class="item-details">
             <!-- Name -->
             <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
-            <h5><a href="single-item.html">HTC One V</a></h5>
+            <h5><a href="single-item.html"><?php echo ucwords($products['product_name']);?></a></h5>
             <div class="clearfix"></div>
             <!-- Para. Note more than 2 lines. -->
             <p style="text-align:center;">
-              <span class="label label-info">P200</span><br>
-              Something about the product goes here. Not More than 2 lines.</p>
+              <span class="label label-info">P<?php echo $products['product_price'];?></span><br>
+              <?php echo character_limiter($products['product_description'],20);?>
+            </p>
             <hr>
             <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
+            <div class="button" style="text-align:center;"><a href="<?php echo base_url('category/'.$products['category_name'].'/'.$products['product_slug']);?>" class="btn btn-danger btn-small"><i class="icon-search"></i>View Item</a></div>
             <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Item #2 -->
-      <div class="span3">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/mcbeat/images/3.png');?>" alt=""></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="single-item.html">Dell One V</a></h5>
-            <!-- Para. Note more than 2 lines. -->
-             <p style="text-align:center;">
-              <span class="label label-info">P200</span><br>
-              Something about the product goes here. Not More than 2 lines.</p>
-            <hr>
-            <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>  
-
-      <div class="span3">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/mcbeat/images/4.png');?>" alt=""></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="single-item.html">Cannon One V</a></h5>
-            <!-- Para. Note more than 2 lines. -->
-             <p style="text-align:center;">
-              <span class="label label-info">P200</span><br>
-              Something about the product goes here. Not More than 2 lines.</p>
-            <hr>
-            <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="span3">
-        <div class="item">
-          <!-- Item image -->
-          <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/mcbeat/images/5.png');?>" alt=""></a>
-          </div>
-          <!-- Item details -->
-          <div class="item-details">
-            <!-- Name -->
-            <h5><a href="single-item.html">Apple One V</a></h5>
-            <!-- Para. Note more than 2 lines. -->
-             <p style="text-align:center;">
-              <span class="label label-info">P200</span><br>
-              Something about the product goes here. Not More than 2 lines.</p>
-            <hr>
-            <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="#" class="btn btn-danger btn-small">Add to Cart</a></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
+          </div><!-- item-details -->
+        </div><!-- item -->
+      </div><!-- span3 -->
+      <?php endforeach;?>
+      </div><!-- recent items slide -->
+     
 
     </div><!--span12-->
   </div><!--container-->

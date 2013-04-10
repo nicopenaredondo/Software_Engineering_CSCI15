@@ -1,4 +1,4 @@
-<div class="row" style="height:100px;"></div>
+<div class="row" style="height:50px;"></div>
 
 <footer style="background: #65605c url('<?php echo base_url('assets/background/footer.png');?>') repeat;border-top:solid #87EA00;">
   <div class="container">
@@ -93,8 +93,51 @@
   <div class="clearfix"></div>
   </div>
 </footer>
-</body>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/jquery1.9.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/widget.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/jquery.carouFredSel-6.2.0.js');?>"></script>
+
+<script>
+$(document).ready(function() {
+$('#myCart').modal('hide');
+  
+  // Using custom configuration
+  $("#recent_items_slide").carouFredSel({
+    items       : 4,
+    scroll : {
+      items         : 1,
+      easing        : "elastic",
+      duration      : 500,             
+      pauseOnHover  : true
+    }         
+  }); 
+
+   $("#latest_items_category_view").carouFredSel({
+    items       : 1,
+    direction   : "down",
+    scroll : {
+      items         : 1,
+      easing        : "elastic",
+      duration      : 500,             
+      pauseOnHover  : true
+    }         
+  }); 
+});
+
+</script>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'infinity0808'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</body>
 </html>

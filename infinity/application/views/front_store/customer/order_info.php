@@ -1,29 +1,5 @@
 <div class="container">
-	<div class="row" style="margin-left:5px;margin-top:20px;">
-		<img class="pull-left" src="<?php echo base_url('assets/images/lol.png');?>" style="width:200px;height:80px;">
-		<div class="btn-group pull-right" style="margin-top:25px;">
-			
-			<a class="btn" href="#">
-				<i class="icon-globe"></i><span class="hidden-phone hidden-tablet"> Notifications</span> <span class="label label-important hidden-phone">2</span>
-			</a>
-
-			<a class="btn" href="#">
-				<i class="icon-shopping-cart"></i><span class="hidden-phone hidden-tablet"> Cart</span> <span class="label label-important hidden-phone">2</span>
-			</a>
-
-			<!-- start: User Dropdown -->
-			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="icon-user"></i><span class="hidden-phone hidden-tablet"> Yo' Mama</span>
-				<span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="#">Profile</a></li>
-				<li class="divider"></li>
-				<li><a href="<?php echo base_url('dashboard/logout');?>">Logout</a></li>
-			</ul>
-			<!-- end: User Dropdown -->
-		</div>
-	</div><!--row-->
+	
 	<div class="row" style="margin-top:50px;">
 		<div class="span3" style="margin-top:10px;">
 			<h4>My Account</h4>
@@ -34,7 +10,7 @@
 			  <li><a href="<?php echo base_url('my-order');?>">My Orders</a></li>
 			  <li><a href="<?php echo base_url('my-wishlist');?>">My Wishlist</a></li>
 			</ul>
-			<a style="margin-left:40px;"href="" class="btn btn-info"><i class="icon-check"></i>Go Shopping!</a>
+			<a style="margin-left:40px;"href="" class="btn btn-danger"><i class="icon-check"></i>Go Shopping!</a>
 		</div><!--span6-->
 		<div class="span9">
 			<h1>Order Information</h1>

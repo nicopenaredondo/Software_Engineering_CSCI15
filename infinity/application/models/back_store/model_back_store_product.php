@@ -6,13 +6,14 @@ class Model_back_store_product extends CI_Model
 		parent::__construct();
 	}
 	
-	public function list_all_products($offset,$limit)
+	public function list_all_products($offset,$limit,$order_by = NULL)
 	{
-		$this->db->limit($offset,$limit);
-
+		
+		$this->db->limit($limit,$offset);
 		$this->db->select('product.product_id,
 						product.product_name,
 						product.product_slug,
+						product.product_description,
 						product.product_price,
 						category.category_name')
 				->from('product')
@@ -25,9 +26,30 @@ class Model_back_store_product extends CI_Model
 			return false;
 	}
 
+	
+	public function list_all_products_by_category($category_slug)
+	{
+		$this->db->select('product.product_id,
+						product.product_name,
+						product.product_slug,
+						product.product_price,
+						product.product_description,
+						category.category_name,
+						category.category_slug')
+				->from('product')
+				->join('category','category.category_id = product.category_id','left')
+				->where('category.category_slug',$category_slug);
+		$result = $this->db->get();
+		if($result->num_rows() > 0)
+		{
+			return $result->result_array();
+		}
+			return false;
+	}
+
 	public function list_all_category()
 	{
-		$this->db->select('*')->from('category');
+		$this->db->select('category_id,category_name,category_slug')->from('category');
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{

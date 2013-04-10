@@ -6,6 +6,7 @@ class Controller_front_store_login extends CI_Controller
 		parent::__construct();
 		//load all the models! \m/
 		$this->load->model('front_store/model_front_store_login');
+		$this->load->model('back_store/model_back_store_product');
 	}
 
 	public function index($message = NULL)
@@ -16,11 +17,13 @@ class Controller_front_store_login extends CI_Controller
 		$this->footer();
 	}
 
-	private function header($attr = NULL)
+	private function header($title = NULL)
 	{
-	$header_data['title'] = 'Login';
+	$header_data['category_list']  = $this->model_back_store_product->list_all_category();
+	$header_data['title'] 		   = $title;
 	$this->load->view('template/front_store/header',$header_data);
 	}
+
 
 	private function footer($attr = NULL)
 	{

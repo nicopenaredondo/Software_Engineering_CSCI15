@@ -6,6 +6,7 @@ class Controller_front_store_order extends CI_Controller
 		parent::__construct();
 		$this->is_logged_in();	
 		$this->load->model('back_store/model_back_store_order');
+		$this->load->model('back_store/model_back_store_product');
 	}
 
 	private function is_logged_in()
@@ -19,11 +20,13 @@ class Controller_front_store_order extends CI_Controller
 		} 
 	}
 
-	private function header($attr = NULL)
+	private function header($title = NULL)
 	{
-	$header_data['attr'] = $attr;
+	$header_data['category_list']  = $this->model_back_store_product->list_all_category();
+	$header_data['title'] 		   = $title;
 	$this->load->view('template/front_store/header',$header_data);
 	}
+
 
 	private function footer($attr = NULL)
 	{
