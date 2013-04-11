@@ -114,10 +114,10 @@ $('#myCart').modal('hide');
   }); 
 
    $("#latest_items_category_view").carouFredSel({
-    items       : 1,
+    items       : 2,
     direction   : "down",
     scroll : {
-      items         : 1,
+      items         : 2,
       easing        : "elastic",
       duration      : 500,             
       pauseOnHover  : true

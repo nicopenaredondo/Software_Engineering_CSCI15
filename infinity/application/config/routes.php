@@ -47,12 +47,12 @@ $route['default_controller'] 			= "front_store/controller_front_store_website/in
 $route['category']						= "front_store/controller_front_store_website/product_list";
 $route['category/(:any)']				= "front_store/controller_front_store_website/product_list/$1";
 $route['category/(:any)/(:any)']		= "front_store/controller_front_store_website/product_list/$1/$2";
+$route['cart']							= "front_store/controller_front_store_website/view_cart";
+$route['cart/add-to-cart/(:any)']		= "front_store/controller_front_store_website/add_cart/$1";
+$route['cart/modify-cart']				= "front_store/controller_front_store_website/modify_cart";
+$route['cart/reset-cart']				= "front_store/controller_front_store_website/reset_cart";
+$route['cart/checkout']					= "front_stoer/controller_front_store_website/checkout";
 $route['dashboard/logout']	 			= "front_store/controller_front_store_website/logout";
-
-//cart routes
-$route['cart']							= "front_store/controller_front_store_cart/view_cart";
-$route['cart/add-to-cart/(:any)']		= "front_store/controller_front_store_cart/add_cart/$1";
-$route['cart/reset-cart']				= "front_store/controller_front_store_cart/reset_cart";
 //dashboard routes
 $route['dashboard']						= "front_store/controller_front_store_dashboard/dashboard";
 

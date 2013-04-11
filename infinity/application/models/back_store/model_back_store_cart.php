@@ -24,13 +24,13 @@ class Model_back_store_cart extends CI_Model
                'name'    => (string) $row->product_name,
                'options' => array()
             );
-		print_r($data);
 		$this->cart->product_name_rules = '[:print:]';
 		$this->cart->insert($data);
 
 	}
 	public function modify_cart()
 	{
+		$data = array();
 
 	}
 	public function reset_cart()

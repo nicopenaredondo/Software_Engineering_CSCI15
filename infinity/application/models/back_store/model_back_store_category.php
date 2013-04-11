@@ -155,4 +155,19 @@ class Model_back_store_category extends CI_Model
 			//but if not return true;
 			return true;
 	}
+
+	public function check_category($slug)
+	{
+		$this->db->select('category_id')
+				 ->from('category')	
+				 ->where('category_slug',$slug);
+		$result = $this->db->get();
+		if($result->num_rows() == 1)
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+	}
 }

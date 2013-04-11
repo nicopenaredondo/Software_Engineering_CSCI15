@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elusive-webfont.css');?>">
   <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/widget.js');?>"></script>
-</head>
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "84303b3d-acb5-49d3-98da-9f0ab9524f27", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+ </head>
 <body style="background-image: url('assets/background/square_bg.png');?>">
 <header>
   <div class="container">
@@ -59,14 +62,17 @@
             </div>
             <div class="modal-body">
             <?php if($this->cart->total_items() >= 1):?>
+            <form method="POST" action="cart">
             <table class="table">
               <thead>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
               </thead>
               <?php foreach($this->cart->contents() as $items):?>
                 <tbody>
+                  <td><?php echo $items['id'];?></td>
                   <td><?php echo $items['name'];?></td>
                   <td><?php echo $items['qty'];?></td>
                   <td><?php echo $items['price'];?></td>
@@ -74,13 +80,15 @@
               <?php endforeach;?>
                 <tbody>
                   <td></td>
+                  <td></td>
                   <td>Total Price</td>
                   <td ><b>₱<?php echo $this->cart->total();?></b></td>
                 </tbody>
-             </table>
+            </table>
+            </form>
             <?php else:?>
             <div class="alert alert-info">
-              <i class="icon-shopping-cart"></i>Your cart is currently empty.Start <a href="<?php echo base_url();?>"><b>shopping</b></a> now
+              <i class="icon-shopping-cart"></i>Your cart is currently empty.Start <a href="<?php echo base_url('category');?>"><b>shopping</b></a> now
             </div>
             <?php endif;?>
             </div>

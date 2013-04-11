@@ -45,7 +45,7 @@
           </div><!-- item-details -->
         </div><!-- item -->
       <?php endforeach;?>
-      </div><!-- recent items slide -->
+      </div><!-- latest_items_category_view -->
     	<?php else:?>
     	<p style="text-align:center">No products found in the database</p>
     <?php endif;?>
@@ -53,10 +53,11 @@
 	<div class="span9">
 		<ul class="breadcrumb" style="background:transparent;">
 		  <li><a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span></li>
-		  <li><a href="<?php echo base_url('category');?>">Category</a></li>
+		  <li><a href="<?php echo base_url('category/'.$this->uri->segment(2));?>"><?php echo ucwords($this->uri->segment(2));?></a></li>
 		</ul><!-- breadcrumb -->
 		<hr style="margin-top:-16px;">
 		<h4><?php echo ucwords($this->uri->segment(2));?></h4>
+    <div class="row">
 		<?php foreach($list_of_products as $products):?>
       <div class="span3">
         <div class="item" style="height:350px;">
@@ -83,6 +84,7 @@
         </div><!-- item -->
       </div><!-- span3 -->
       <?php endforeach;?>
+      </div><!-- row -->
 	</div><!-- span9 -->
 	</div><!-- row -->
 	

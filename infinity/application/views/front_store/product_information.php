@@ -61,22 +61,24 @@
 			<img src="<?php echo base_url('assets/images/no_picture.png');?>" alt="">
 		</div><!-- span4 -->
 		<div class="span4">
-			<h4><?php echo ucwords($product_info['product_name']);?></h4>
+			<h2><?php echo ucwords($product_info['product_name']);?></h2>
 			<hr>
 			<p>
-			Price : <b>P<?php echo $product_info['product_price'];?></b>
-			<br>
-			Shipping : Free <br>	
-			Brand : Apple <br>
-			Modal : 5G <br>
-			Availability : In Stock <br>
-			<form method="POST" action="<?php echo base_url('cart/add-to-cart/'.$product_info['product_slug']);?>"
-			<div class="input-prepend input-append">
-			  <span class="add-on">Qty</span>
-			  <input  name="product_quantity" class="span1" id="appendedInputButton" type="text" required>
-			  <button class="btn" type="submit"><i class="icon-shopping-cart"></i>Add to Cart</button>
+			<h4>Price : <b>P<?php echo $product_info['product_price'];?></b></h4>
+			<form method="POST" action="<?php echo base_url('cart/add-to-cart/'.$product_info['product_slug']);?>">
+			<div class="input-append">
+				<input  name="current_url" type="hidden" value="<?php echo $this->uri->uri_string();?>">
+				<input  name="product_quantity" class="span1" id="appendedInputButton" value="1" type="number" pattern="[0-9]"  min="1">
+			  	<button class="btn" type="submit"><i class="icon-shopping-cart"></i>Add to Cart</button>
 			</div>
+			<?php echo $this->session->flashdata('message');?>
 			</p>
+			</form>
+		<div class="social_media">
+			<span class='st_facebook_hcount' displayText='Facebook'></span>
+			<span class='st_twitter_hcount' displayText='Tweet'></span>
+			<span class='st_tumblr_hcount' displayText='Tumblr'></span>
+		</div><!-- social media -->
 			
 		</div><!-- span4 -->
 		<div class="span8">
