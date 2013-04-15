@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/todc-bootstrap.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/style.css');?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elusive-webfont.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/flexslider.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elusive-webfont.css');?>">
   <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/widget.js');?>"></script>
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -35,7 +36,7 @@
         <?php else:?>
         <div class="btn-group pull-right" style="margin-top:25px;">
           <a class="btn" href="#">
-            <i class="icon-globe"></i><span class="hidden-phone hidden-tablet"> Notifications</span> <span class="label label-important hidden-phone">2</span>
+            <i class="icon-globe"></i><span class="hidden-phone hidden-tablet">Notifications</span> <span class="label label-important hidden-phone">2</span><span class="label label-info">Soon</span>
           </a>
 
           <a class="btn" href="" data-toggle="modal" data-target="#myCart">
@@ -44,7 +45,7 @@
 
           <!-- start: User Dropdown -->
           <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-user"></i><span class="hidden-phone hidden-tablet"> Yo' Mama</span>
+            <i class="icon-user"></i><span class="hidden-phone hidden-tablet"> <?php echo $this->session->userdata('username');?></span>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
@@ -94,7 +95,7 @@
             </div>
             <div class="modal-footer">
               <?php if($this->cart->total_items() >= 1):?>
-                <a href="<?php echo base_url('cart/reset-cart');?>" class="btn btn-primary">Checkout</a>
+                <a href="<?php echo base_url('cart/checkout');?>" class="btn btn-primary">Checkout</a>
               <?php else:?>
                 <a class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
               <?php endif;?>

@@ -33,8 +33,10 @@ class Controller_front_store_registration extends CI_Controller
 	public function register()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
+		$this->form_validation->set_rules('first_name','First Name','required|trim|xss_clean');
+		$this->form_validation->set_rules('last_name','Last Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('username','Username','required|trim|xss_clean|callback_username_check');
-		$this->form_validation->set_rules('email_address','Email Address','required|trim|xss_clean');
+		$this->form_validation->set_rules('email_address','Email Address','required|trim|xss_clean|email');
 		$this->form_validation->set_rules('password','Password','required|trim|xss_clean');
 		
 		
@@ -71,10 +73,10 @@ class Controller_front_store_registration extends CI_Controller
 	public function username_check($username)
 	{
 		$result = $this->model_front_store_registration->username_check($username);
-		if($result === TRUE)
+		if($result == TRUE)
 		{
 			//username is already taken
-			$this->form_validation->set_message('username', 'The username is already taken.Please choose another one');
+			$this->form_validation->set_message('username_check', 'The username is already taken.Please choose another one');
 			return false;
 		}
 

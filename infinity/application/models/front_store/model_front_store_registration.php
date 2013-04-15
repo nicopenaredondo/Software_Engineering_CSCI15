@@ -14,6 +14,8 @@ class Model_front_store_registration extends CI_Model
 	public function register()
 	{
 		//FOR TABLE `USER`
+		$first_name			= $this->input->post('first_name',TRUE);
+		$last_name			= $this->input->post('last_name',TRUE);
 		$username 			= $this->input->post('username',TRUE);
 		$password 			= $this->input->post('password',TRUE);
 		$email	  			= $this->input->post('email_address'   ,TRUE);
@@ -22,7 +24,7 @@ class Model_front_store_registration extends CI_Model
 
 		$data_user 			= array(
 				'username'		=>	$username,
-				'password'		=>	$password,
+				'password'		=>	$this->encrypt->sha1($password),
 				'email'			=>	$email,
 				'account_type'	=>	$account_type,
 				'hasProfile'	=> 	$hasProfile
@@ -30,11 +32,29 @@ class Model_front_store_registration extends CI_Model
 		
 		$result = $this->db->insert('users',$data_user);
 
-		$result2 = $this->db->insert('user_profiles',array('user_id'=>$this->db->insert_id()));
+		$data_profile = array(
+			'user_id'  	=> $this->db->insert_id(),
+			'first_name'=> $first_name,
+			'last_name'	=> $last_name
+			);
+		$result2 = $this->db->insert('user_profiles',$data_profile);
 		if($result === TRUE && $result2 === TRUE)
 		{
 			return TRUE;
 		}
 			return FALSE;
+	}
+
+	public function username_check($username)
+	{
+		$this->db->select('*')
+				 ->from('users')
+				 ->where('username',$username);
+		$result = $this->db->get();
+		if($result->num_rows() == 1)
+		{
+			return true;
+		}
+			return false;
 	}
 }

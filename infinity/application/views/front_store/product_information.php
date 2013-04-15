@@ -25,13 +25,13 @@
         <div class="item" style="height:350px;">
           <!-- Item image -->
           <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/images/no_picture.png');?>" alt=""></a>
+            <a  href="<?php echo base_url('category/'.$products['category_name'].'/'.$products['product_slug']);?>"><img src="<?php echo base_url('assets/img/'.$products['product_image_name']);?>" alt=""></a>
           </div><!-- item-image -->
           <!-- Item details -->
           <div class="item-details">
             <!-- Name -->
             <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
-            <h5><a href="single-item.html"><?php echo ucwords($products['product_name']);?></a></h5>
+            <h5><a  href="<?php echo base_url('category/'.$products['category_name'].'/'.$products['product_slug']);?>"><?php echo ucwords($products['product_name']);?></a></h5>
             <div class="clearfix"></div>
             <!-- Para. Note more than 2 lines. -->
             <p style="text-align:center;">
@@ -53,12 +53,12 @@
 	<div class="span9">
 		<ul class="breadcrumb" style="background:transparent;">
 		  <li><a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span></li>
-		  <li><a href="<?php echo base_url('category/'.$this->uri->segment(2));?>"><?php echo ucwords($this->uri->segment(2));?></a><span class="divider">/</span></li>
+		  <li><a href="<?php echo base_url('category/'.$product_info['category_slug']);?>"><?php echo ucwords($product_info['category_name']);?></a><span class="divider">/</span></li>
 		  <li><a href="<?php echo base_url('category/'.$product_info['product_slug']);?>"><?php echo ucwords($product_info['product_name']);?></a></li>
 		</ul><!-- breadcrumb -->
 		<hr style="margin-top:-16px;">
 		<div class="span4" style="text-align:center;">
-			<img src="<?php echo base_url('assets/images/no_picture.png');?>" alt="">
+			<img src="<?php echo base_url('assets/img/'.$products['product_image_name']);?>" alt="">
 		</div><!-- span4 -->
 		<div class="span4">
 			<h2><?php echo ucwords($product_info['product_name']);?></h2>
@@ -81,7 +81,7 @@
 		</div><!-- social media -->
 			
 		</div><!-- span4 -->
-		<div class="span8">
+		<div class="span8" style="margin-top:10px;">
 			<div class="tabbable"> <!-- Only required for left/right tabs -->
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>

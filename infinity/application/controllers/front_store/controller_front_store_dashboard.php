@@ -17,7 +17,7 @@ class Controller_front_store_dashboard extends CI_Controller
 		if($login === FALSE || $account_type != 'customer')
 		{
 			return show_404();
-		} 
+		}
 	}
 
 	private function header($title = NULL)
@@ -41,6 +41,8 @@ class Controller_front_store_dashboard extends CI_Controller
 		$this->load->view('front_store/customer/index');
 		$this->footer();
 	}
+
+
 
 
 }

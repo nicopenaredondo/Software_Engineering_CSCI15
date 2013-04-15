@@ -6,6 +6,8 @@ class Controller_back_store_product extends CI_Controller
 		parent::__construct();
 		$this->is_logged_in();
 		$this->load->model('back_store/model_back_store_product');
+		$this->gallery_path 	= realpath(APPPATH . '../assets/img');
+		$this->gallery_path_url = base_url('assets/img'); 
 	}
 
 	private function is_logged_in()
@@ -86,6 +88,8 @@ class Controller_back_store_product extends CI_Controller
 
 	public function add_product()
 	{
+		
+
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error"><i class="icon-exclamation-sign"></i>', '</div>');
 		$this->form_validation->set_rules('product_name','Product Name','required|trim|xss_clean');
 		$this->form_validation->set_rules('product_description','Product Description','required|trim|xss_clean');
@@ -102,9 +106,10 @@ class Controller_back_store_product extends CI_Controller
 			*@return BOOLEAN
 			*/
 
-			//it will validate if the user is registered into the system
-			$results = $this->model_back_store_product->add_product();
-			if($results === TRUE)
+			//it will validate if the user is registered into the syste
+			
+			$results = $this->model_back_store_product->add_product($this->upload_photo());
+			if($results == TRUE)
 			{
 				//if the user is registered,it will redirect to customer page
 				$message= "<div class='alert alert-success'><i class='icon-exclamation-sign'></i>You have successfully added a product<br>
@@ -118,6 +123,7 @@ class Controller_back_store_product extends CI_Controller
 				$this->session->set_flashdata('message', $message);
 				redirect(base_url('admin/product/add-new-product'));
 			}
+		
 		}else
 		{
 			//if the form does not passed the rules.it will go back to the login page
@@ -136,6 +142,7 @@ class Controller_back_store_product extends CI_Controller
 		$this->form_validation->set_rules('product_price','Product Price','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('product_stock_quantity','Product Quantity','required|trim|xss_clean|integer');
 		$this->form_validation->set_rules('category_id','Product Category','required|trim|xss_clean|integer');
+		$this->form_validation->set_rules('files','File','required');
 		// if the form passed the rules
 		if($this->form_validation->run() ===  TRUE)
 		{
@@ -146,7 +153,7 @@ class Controller_back_store_product extends CI_Controller
 			*/
 
 			//it will validate if the user is registered into the system
-			$results = $this->model_back_store_product->modify_product();
+			$results = $this->model_back_store_product->modify_product($this->upload_photo());
 			if($results === TRUE)
 			{
 				//if the user is registered,it will redirect to customer page
@@ -234,6 +241,67 @@ class Controller_back_store_product extends CI_Controller
 			$this->form_validation->set_message('modified_slug_validation', 'The slug is already taken.Please choose another one');
 			return false;
 		}
+	}
+
+	public function upload_photo($id = NULL)
+	{
+		//configuration of the upload photo
+		$config = array(
+                'allowed_types' => 'jpg|jpeg|gif|png',
+                'upload_path'   => $this->gallery_path,
+                'max_size'      => 500000,
+                'encrypt_name'  => TRUE
+                );
+		$this->load->library('upload',$config);
+
+		//check if the upload is successfull
+		if($this->upload->do_multi_upload('files') == FALSE)
+		{
+			//place all the necessary data and return it
+			$error_array = array('return_boolean' => FALSE,'data' => $this->upload->display_errors());
+			return $error_array;
+		}
+		//get the data of the recently uploaded photo
+		$image_data = $this->upload->get_multi_upload_data();
+		
+		foreach($image_data as $image)
+		{
+			$this->load->library('image_lib');
+			//if successful create a config file of the rezied 300x200 version
+			$config_resized = array(
+	                'source_image'    => $image['full_path'],
+			        'new_image'       => $this->gallery_path,
+			        'maintain_ration' => true,
+			        'width'           => 300,
+			        'height'          => 250
+	                );
+			//initialize the configurations  so we can reuse one of its function
+			$this->image_lib->initialize($config_resized);
+			
+			//use the resize() function of image_lib
+			$this->image_lib->resize();
+
+			//this will clear all the configurations made
+			$this->image_lib->clear();
+			
+	     
+			//if successful create a config file of the thumbnail version
+			$config_thumb = array(
+	                'source_image'    => $image['full_path'],
+			        'new_image'       => $this->gallery_path.'/thumbs',
+			        'maintain_ration' => true,
+			        'width'           => 45,
+			        'height'          => 45
+	                );
+			//initialize the configurations
+			$this->image_lib->initialize($config_thumb);
+			//use the resize() function of image_lib
+			$this->image_lib->resize();
+			//place all the necessary data and return it
+			$data_array[] = array('image_name' => $image['file_name']);
+
+		}
+			return $data_array;
 	}
 
 }

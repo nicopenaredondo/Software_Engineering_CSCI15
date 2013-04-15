@@ -15,9 +15,13 @@ class Model_back_store_product extends CI_Model
 						product.product_slug,
 						product.product_description,
 						product.product_price,
-						category.category_name')
+						category.category_name,
+						category.category_slug,
+						product_image.product_image_name')
 				->from('product')
-				->join('category','category.category_id = product.category_id','left');
+				->join('product_image','product_image.product_id = product.product_id')
+				->join('category','category.category_id = product.category_id');
+		$this->db->group_by("product.product_id"); 
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
@@ -35,10 +39,13 @@ class Model_back_store_product extends CI_Model
 						product.product_price,
 						product.product_description,
 						category.category_name,
-						category.category_slug')
+						category.category_slug,
+						product_image.product_image_name')
 				->from('product')
-				->join('category','category.category_id = product.category_id','left')
+				->join('category','category.category_id = product.category_id')
+				->join('product_image','product_image.product_id = product.product_id')
 				->where('category.category_slug',$category_slug);
+		$this->db->group_by("product.product_id"); 
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
@@ -68,7 +75,10 @@ class Model_back_store_product extends CI_Model
 		if(is_numeric($slug))
 		{
 		$this->db->select('*')->from('product')
-							->where('product_id',$slug);
+							  ->join('category','category.category_id = product.category_id')
+							  ->join('product_image','product_image.product_id = product.product_id')
+							  ->JOIN
+							  ->where('product_id',$slug);
 		$result = $this->db->get();
 		if($result->num_rows() > 0)
 		{
@@ -77,7 +87,9 @@ class Model_back_store_product extends CI_Model
 			return show_404();
 		}else{
 			$this->db->select('*')->from('product')
-								->where('product_slug',$slug);
+								  ->join('category','category.category_id = product.category_id')
+								  ->join('product_image','product_image.product_id = product.product_id')	
+								  ->where('product_slug',$slug);
 			$result = $this->db->get();
 			if($result->num_rows() > 0)
 			{
@@ -87,7 +99,7 @@ class Model_back_store_product extends CI_Model
 		}
 	}
 
-	public function add_product()
+	public function add_product($image_name_array)//arrrrraaay ittooo eeeengng ohohoho
 	{
 		$category_id  	     	= $this->input->post('category_id',TRUE);
 		$product_name 		 	= $this->input->post('product_name',TRUE);
@@ -105,7 +117,19 @@ class Model_back_store_product extends CI_Model
 			'product_stock_quantity'=>	$product_stock_quantity
 			);
 
-		$result = $this->db->insert('product',$data_array);
+		$result  = $this->db->insert('product',$data_array);
+		//getting the last insert id of product
+		$product_id = $this->db->insert_id();
+		//another data set for product image 
+		foreach($image_name_array as $image)
+		{
+			$data2_array = array(
+			'product_id'			=> $product_id,
+			'product_image_name '	=> $image['image_name']
+			);
+			$this->db->insert('product_image',$data2_array); 
+		}
+
 		if($result === TRUE)
 		{
 			return true;
@@ -113,7 +137,7 @@ class Model_back_store_product extends CI_Model
 			return false;
 	}
 
-	public function modify_product()
+	public function modify_product($image_name_array)
 	{
 		
 		$product_id				= $this->input->post('product_id',TRUE);
@@ -134,6 +158,15 @@ class Model_back_store_product extends CI_Model
 			);
 		//for more info abou Active Record class please see the documentation
 		$result = $this->db->update('product',$data_array,array('product_id' => $product_id));
+
+		foreach($image_name_array as $image)
+		{
+			$data2_array = array(
+			'product_id'			=> $product_id,
+			'product_image_name '	=> $image['image_name']
+			);
+			$this->db->insert('product_image',$data2_array); 
+		}
 
 		if($result === TRUE)
 		{

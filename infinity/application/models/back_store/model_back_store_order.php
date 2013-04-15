@@ -144,6 +144,54 @@ class Model_back_store_order extends CI_Model
 			return false;
 	}
 
+	public function add_order()
+	{
+		$transaction_id = random_string('numeric', 12);
+		$first_name 	= $this->input->post('first_name',TRUE);
+		$last_name  	= $this->input->post('last_name',TRUE);
+		$address  		= $this->input->post('address',TRUE);
+		$mobile  		= $this->input->post('mobile',TRUE);
+		$city 		 	= $this->input->post('city',TRUE);
+		$zip_code  		= $this->input->post('zip_code',TRUE);
+		$country  		= $this->input->post('country',TRUE);
+		$payment_method = $this->input->post('payment_method',TRUE);
+		$message		= $this->input->post('message',TRUE);
+
+		$billing_array  = array(
+			'first_name' => $first_name,
+			'last_name'	 => $last_name,
+			'address'	 => $last_name,
+			'mobile'	 => $mobile,
+			'city'		 => $city,
+			'zip_code'	 => $zip_code,
+			'country'	 => $country,
+			);
+		$this->db->insert('billing',$billing_array);
+		$billing_id = $this->db->insert_id();
+
+		$orders_array   = array(
+			'order_reference_id' => $transaction_id,
+			'customer_id'		 => $this->session->userdata('id'),
+			'order_status_id'	 => 7,
+			'payment_id'		 => $payment_method,
+			'billing_id'		 => $billing_id,
+			'message'			 => $message
+			);
+		$this->db->insert('orders',$orders_array);
+		$order_id = $this->db->insert_id();
+
+		foreach($this->cart->contents() as $product)
+		{
+			$order_product_array = array(
+				'order_id'	=> $order_id,
+				'product_id'=> $product['id'],
+				'product_quantity'	=> $product['qty']
+				);
+			$this->db->insert('order_product',$order_product_array);
+		}
+		return TRUE;
+	}
+
 	public function modify_order($slug)
 	{
 		$ref_id       = $slug;

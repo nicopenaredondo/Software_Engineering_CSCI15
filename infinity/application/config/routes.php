@@ -41,21 +41,23 @@
 
 $route['default_controller'] 			= "front_store/controller_front_store_website/index";
 
-
+//cart routes
+$route['cart']							= "front_store/controller_front_store_cart/view_cart";
+$route['cart/add-to-cart/(:any)']		= "front_store/controller_front_store_cart/add_cart/$1";
+$route['cart/modify-cart']				= "front_store/controller_front_store_cart/modify_cart";
+$route['cart/reset-cart']				= "front_store/controller_front_store_cart/reset_cart";
+$route['cart/delete-product/(:any)']	= "front_store/controller_front_store_cart/delete_product_cart/$1";
 
 //website routes
 $route['category']						= "front_store/controller_front_store_website/product_list";
 $route['category/(:any)']				= "front_store/controller_front_store_website/product_list/$1";
 $route['category/(:any)/(:any)']		= "front_store/controller_front_store_website/product_list/$1/$2";
-$route['cart']							= "front_store/controller_front_store_website/view_cart";
-$route['cart/add-to-cart/(:any)']		= "front_store/controller_front_store_website/add_cart/$1";
-$route['cart/modify-cart']				= "front_store/controller_front_store_website/modify_cart";
-$route['cart/reset-cart']				= "front_store/controller_front_store_website/reset_cart";
-$route['cart/checkout']					= "front_stoer/controller_front_store_website/checkout";
-$route['dashboard/logout']	 			= "front_store/controller_front_store_website/logout";
+$route['cart/checkout']					= "front_store/controller_front_store_website/checkout";
+$route['cart/checkout/process']			= "front_store/controller_front_store_website/checkout_process";
+
 //dashboard routes
 $route['dashboard']						= "front_store/controller_front_store_dashboard/dashboard";
-
+$route['dashboard/logout']	 			= "front_store/controller_front_store_website/logout";
 //my-account routes
 $route['my-account']					= "front_store/controller_front_store_my_account/my_account_details";
 $route['my-account/profile/update']		= "front_store/controller_front_store_my_account/modify_user_profile";

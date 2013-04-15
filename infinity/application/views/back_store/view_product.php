@@ -21,7 +21,7 @@
 			<?php echo $this->session->flashdata('message');?>
 			<h3>Product Information</h3>
 			<hr>	
-			<form method="POST" action="<?php echo base_url('admin/product/modify');?>">
+			<?php echo form_open_multipart(base_url('admin/product/modify'));?>
 			<div class="row" style="margin-top:10px;">
 				<div class="span6" >
 					<input type="hidden" name="product_id" value="<?Php echo $product_information['product_id'];?>">
@@ -124,14 +124,14 @@
 					  <button type="reset" class="btn">reset</button>
 					</div>
 				</div><!--span6-->
-				</div><!--row-->
-				</form>
+				
+				
 				<div class="span6">
-					
+					<img style="margin-left:120px;"class="img-polaroid"src="<?php echo base_url('assets/img/'.$product_information['product_image_name']);?>">
+					<input style="margin-left:150px;margin-top:20px;"type="file" name="files[]" multiple/>
 				</div><!--span6-->
+				</form>
 			</div><!--row-->
-
-
 		</div><!--span12-->
 	</div><!--row-->
 </div><!--container-->

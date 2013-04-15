@@ -19,7 +19,7 @@ class Model_front_store_login extends CI_Model
 		$this->db->select('*')
 				   ->from('users')
 				   ->where('username',$username)
-				   ->where('password',$password);
+				   ->where('password',$this->encrypt->sha1($password));
 		$query = $this->db->get();
 		if($query->num_rows() == 1)
 		{

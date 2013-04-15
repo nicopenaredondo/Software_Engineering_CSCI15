@@ -25,7 +25,7 @@
         <div class="item" style="height:350px;">
           <!-- Item image -->
           <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/images/no_picture.png');?>" alt=""></a>
+            <a href="single-item.html"><img src="<?php echo base_url('assets/img/'.$products['product_image_name']);?>" alt=""></a>
           </div><!-- item-image -->
           <!-- Item details -->
           <div class="item-details">
@@ -40,7 +40,7 @@
             </p>
             <hr>
             <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="<?php echo base_url('category/'.$products['category_name'].'/'.$products['product_slug']);?>" class="btn btn-danger btn-small"><i class="icon-search"></i>View Item</a></div>
+            <div class="button" style="text-align:center;"><a href="<?php echo base_url('category/'.$products['category_slug'].'/'.$products['product_slug']);?>" class="btn btn-danger btn-small"><i class="icon-search"></i>View Item</a></div>
             <div class="clearfix"></div>
           </div><!-- item-details -->
         </div><!-- item -->
@@ -63,13 +63,13 @@
         <div class="item" style="height:350px;">
           <!-- Item image -->
           <div class="item-image">
-            <a href="single-item.html"><img src="<?php echo base_url('assets/images/no_picture.png');?>" alt=""></a>
+            <a href="<?php echo base_url('category/'.$products['category_slug'].'/'.$products['product_slug']);?>"><img src="<?php echo base_url('assets/img/'.$products['product_image_name']);?>"></a></a>
           </div><!-- item-image -->
           <!-- Item details -->
           <div class="item-details">
             <!-- Name -->
             <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
-            <h5><a href="single-item.html"><?php echo ucwords($products['product_name']);?></a></h5>
+            <h5><a href="<?php echo base_url('category/'.$products['category_slug'].'/'.$products['product_slug']);?>"><?php echo ucwords($products['product_name']);?></a></h5>
             <div class="clearfix"></div>
             <!-- Para. Note more than 2 lines. -->
             <p style="text-align:center;">
@@ -78,7 +78,7 @@
             </p>
             <hr>
             <!-- Add to cart -->
-            <div class="button" style="text-align:center;"><a href="<?php echo base_url('category/'.$products['category_name'].'/'.$products['product_slug']);?>" class="btn btn-danger btn-small"><i class="icon-search"></i>View Item</a></div>
+            <div class="button" style="text-align:center;"><a href="<?php echo base_url('category/'.$products['category_slug'].'/'.$products['product_slug']);?>" class="btn btn-danger btn-small"><i class="icon-search"></i>View Item</a></div>
             <div class="clearfix"></div>
           </div><!-- item-details -->
         </div><!-- item -->

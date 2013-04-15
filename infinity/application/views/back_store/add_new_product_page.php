@@ -19,7 +19,7 @@
 			<?php echo $this->session->flashdata('message');?>
 			<h3>Product Information</h3>
 			<hr>	
-			<form method="POST" action="<?php echo base_url('admin/product/new');?>">
+			<?php echo form_open_multipart(base_url('admin/product/new'));?>
 			<div class="row" style="margin-top:10px;">
 				<div class="span6" >
 					<!--product-name-->
@@ -116,14 +116,13 @@
 					  <button type="reset" class="btn">reset</button>
 					</div>
 				</div><!--span6-->
-				</div><!--row-->
-				</form>
+				
 				<div class="span6">
+				<input style="margin-left:150px;margin-top:20px;"type="file" name="files[]" multiple/>
 					
 				</div><!--span6-->
+				</form>
 			</div><!--row-->
-
-
 		</div><!--span12-->
 	</div><!--row-->
 </div><!--container-->

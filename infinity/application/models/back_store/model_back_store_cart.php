@@ -30,8 +30,17 @@ class Model_back_store_cart extends CI_Model
 	}
 	public function modify_cart()
 	{
-		$data = array();
+		$row_id = $this->input->post('rowid',TRUE);
+		$qty 	= $this->input->post('product_quantity',TRUE);
 
+		$data   = array('rowid'=>$row_id,'qty'=>$qty);
+		$this->cart->update($data);
+
+	}
+	public function delete_product_cart($slug)
+	{
+		$data = array('rowid'=>$slug,'qty' => 0);
+		$this->cart->update($data);
 	}
 	public function reset_cart()
 	{

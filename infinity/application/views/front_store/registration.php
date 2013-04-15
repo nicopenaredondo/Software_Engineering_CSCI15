@@ -22,13 +22,30 @@
             <!-- Register form (not working)-->
               <form class = "form-horizontal" action="<?php echo base_url('auth/register/new');?>" method = "POST">      
                 <?php echo $this->session->flashdata('message');?>
-                  
+                
+                <?php echo form_error('first_name');?>                                
+                <!-- Username -->
+                <div class="control-group">
+                  <label class="control-label" for="first_name">First Name</label>
+                  <div class="controls">
+                    <input type="text" name="first_name" placeholder="First Name" value="" required>
+                  </div>
+                </div>
+
+                <?php echo form_error('last_name');?>                                
+                <!-- Username -->
+                <div class="control-group">
+                  <label class="control-label" for="last_name">Last Name</label>
+                  <div class="controls">
+                    <input type="text" name="last_name" placeholder="Last Name" value="" required>
+                  </div>
+                </div>
                 <?php echo form_error('email_address');?>                                
                 <!-- Username -->
                 <div class="control-group">
                   <label class="control-label" for="email_address">E-Mail</label>
                   <div class="controls">
-                    <input type="text" name="email_address" placeholder="Email Address" value="">
+                    <input type="text" name="email_address" placeholder="Email Address" value="" required>
                   </div>
                 </div>
 
@@ -37,7 +54,7 @@
                 <div class="control-group">
                   <label class="control-label" for="username">Username</label>
                   <div class="controls">
-                    <input type="text" name="username" placeholder="username" value="">
+                    <input type="text" name="username" placeholder="username" value="" required>
                   </div>
                 </div>
                 <!-- Password -->
@@ -45,7 +62,7 @@
                 <div class="control-group">
                   <label class="control-label" for="email">Password</label>
                   <div class="controls">
-                    <input type="password" name="password" placeholder="password">
+                    <input type="password" name="password" placeholder="password" required>
                   </div>
                 </div>
                <!-- Buttons -->

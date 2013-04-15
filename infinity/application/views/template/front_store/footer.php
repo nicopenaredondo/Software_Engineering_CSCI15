@@ -71,19 +71,33 @@
               </div><!--span4-->
 
               <div class="span4">
+                <h5>Developers</h5>
+                <hr>
+                <div id="developer_image">
                 <div class="widget">
-                	<h5>About Me</h5>
-                	<hr>
-                		<div class="textwidget">
-                			<p style="text-align:justify;">
-                				<img class="pull-left"src="<?php echo base_url('assets/images/big.jpg');?>"> 
-                				Hi, I'm Nico Penaredondo. I am a 19 year old Freelance Web Developer based on Meycauayan, Bulacan.
-                				 I  build web application and shit</p>
-										</div>
-								</div>
-              </div>
+                	<div class="textwidget" style="margin-left:70px;margin-top:20px;">
+                	  <img style="width:150px;height:150px;"class="img-circle"src="<?php echo base_url('assets/images/nico.png');?>">
+									  <br>
+                    <h5 style="margin-left:15px;">Nico Penaredondo</h5>
+                  </div><!-- textwidget -->
+								</div><!-- widget -->
+                <div class="widget">
+                  <div class="textwidget" style="margin-left:70px;margin-top:20px;">
+                    <img style="width:150px;height:150px;"class="img-circle"src="<?php echo base_url('assets/images/ed.png');?>">
+                    <h5 style="margin-left:35px;">Edsel Pingol</h5>
+                  </div><!-- textwidget -->
+                </div><!-- widget -->
+                <div class="widget">
+                  <div class="textwidget" style="margin-left:70px;margin-top:20px;">
+                    <img style="width:150px;height:150px;"class="img-circle"src="<?php echo base_url('assets/images/glen.png');?>">
+                    <h5 style="margin-left:13px;">Glenwyn Lomocso</h5>
+                  </div><!-- textwidget -->
+                </div><!-- widget -->
+                </div><!-- developer_image -->
+              </div><!-- span4 -->
+              </div><!-- row -->
               
-            </div>
+            </div><!-- span12 -->
 
             <hr>
             <!-- Copyright info -->
@@ -95,13 +109,28 @@
 </footer>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/jquery1.9.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/jquery.flexslider.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/widget.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/jquery.carouFredSel-6.2.0.js');?>"></script>
 
 <script>
+function onNext(parent, panel) {
+hash = "#" + panel.id;
+$(".acc-wizard-sidebar",$(parent))
+            .children("li")
+            .children("a[href='" + hash + "']")
+            .parent("li")
+            .removeClass("acc-wizard-todo")
+            .addClass("acc-wizard-completed");
+      }
 $(document).ready(function() {
 $('#myCart').modal('hide');
-  
+$('.flexslider').flexslider({
+  animationLoop : true,
+  slideshow     : true, 
+  touch         : true, 
+  slideshowSpeed: 2500, 
+});
   // Using custom configuration
   $("#recent_items_slide").carouFredSel({
     items       : 4,
@@ -114,7 +143,7 @@ $('#myCart').modal('hide');
   }); 
 
    $("#latest_items_category_view").carouFredSel({
-    items       : 2,
+    items       : 1,
     direction   : "down",
     scroll : {
       items         : 2,
@@ -123,9 +152,20 @@ $('#myCart').modal('hide');
       pauseOnHover  : true
     }         
   }); 
+
+    $("#developer_image").carouFredSel({
+    items       : 1,
+    direction   : "right",
+    scroll : {
+      items         : 1,
+      easing        : "elastic",
+      duration      : 500,             
+      pauseOnHover  : false
+    }         
+  }); 
 });
 
-</script>
+</script> 
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'infinity0808'; // required: replace example with your forum shortname

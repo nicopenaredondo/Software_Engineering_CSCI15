@@ -4,20 +4,16 @@
 			<h4>My Account</h4>
 			<hr>
 			<ul class="nav nav-tabs nav-stacked">
-				<li><a href="<?php echo base_url('dashboard');?>">Dashboard</a></li>
-			  <li class="active"><a href="<?php echo base_url('my-account');?>">My Account Details</a></li>
-			  <li><a href="<?php echo base_url('my-order');?>">My Orders</a></li>
-			  <li><a href="<?php echo base_url('my-wishlist');?>">My Wishlist</a></li>
+			  	<li><a href="<?php echo base_url('dashboard');?>"><i class="icon-dashboard"></i>Dashboard</a></li>
+			  	<li class="active"><a href="<?php echo base_url('my-account');?>"><i class="icon-user"></i>My Account Details</a></li>
+			  	<li><a href="<?php echo base_url('my-order');?>"><i class="icon-list"></i>My Orders</a></li>
+			  	<li><a href="#"><span class="label label-info">Soon</span><i class="icon-gift"></i>My Wishlist</a></li>
 			</ul>
 			<a style="margin-left:40px;"href="" class="btn btn-warning"><i class="icon-check"></i>Go Shopping!</a>
 		</div><!--span6-->
 		<div class="span9">
 			
 			<h1>My Account Details</h1>
-			<h6>Hello, Nico Penaredondo!</h6>
-			<p style="align:justify;">
-				From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.
-			</p>
 			<?php echo $this->session->flashdata('message');?>
 			<?php echo validation_errors();?>
 			<div class="widget-box">
