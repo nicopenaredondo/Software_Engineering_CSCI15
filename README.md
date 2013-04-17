@@ -1,8 +1,8 @@
-URGENT : CUSTOMER & WEB DESIGN + SNS API'S  DUE TODAY! 
+Congratulations Guys! :D 
 ==================================================
 
 
-OFFICIAL REPOSITORY OF SOFTWARE ENGINEERING CSCI15
+OFFICIAL REPOSITORY OF SOFTWARE ENGINEERING CSCI15 
 ==================================================
 
 Members 
